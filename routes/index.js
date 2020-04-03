@@ -319,10 +319,10 @@ router.get("/register",function(req,res){
 	res.render('register', {active: { register: true }});
 });
 
-router.get("/document", authenticationMiddleware(), (req,res) => {
+router.get("/post_blog", authenticationMiddleware(), (req,res) => {
 	var keywords = "idk";
 	var id = 9;
-	res.render('document', {keywords: keywords, id: id});
+	res.render('post_blog', {keywords: keywords, id: id});
 });
 
 router.post("/add_post", authenticationMiddleware(), (req,res) => {
