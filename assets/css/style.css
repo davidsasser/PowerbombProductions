@@ -1,0 +1,371 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+* {
+  box-sizing: border-box; }
+
+#page-container {
+  position: relative;
+  min-height: 100vh; }
+
+#content-wrap {
+  padding-bottom: 28rem; }
+
+#alert-message {
+  margin: 20px; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif; }
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 20px 10px; }
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 22px;
+  line-height: 36px;
+  border-radius: 4px; }
+
+.nav-link[aria-expanded="true"] {
+  background-color: #ddd; }
+
+.dropdown-item {
+  text-align: left !important; }
+
+.dropdown-item:hover {
+  background-color: #f1f1f1 !important; }
+
+.dropdown-menu {
+  background-color: #ddd;
+  border-radius: 4px; }
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: SlateBlue; }
+
+.header a:hover {
+  background-color: #ddd;
+  color: Black; }
+
+.header a.active {
+  background-color: #b52727;
+  color: white; }
+
+.header-right {
+  float: right;
+  height: 84px;
+  padding: 12px; }
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left; }
+
+  .header-right {
+    float: none; } }
+.pbp-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2% 2%; }
+
+.pbp-grid {
+  margin: 20px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+  text-align: center;
+  width: 100%; }
+
+.pbp-grid:after {
+  clear: both; }
+
+.pbp-grid:after, .pbp-box:before {
+  content: '';
+  display: table; }
+
+.pbp-grid li {
+  width: 328px;
+  height: 328px;
+  display: inline-block;
+  margin: 10px; }
+
+.pbp-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  -webkit-transition: 0.3s ease-in-out,  -webkit-transform 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out,  -moz-transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; }
+
+.pbp-box:hover {
+  transform: scale(1.05); }
+
+.pbp-img-1 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/WWE.png);
+  background-size: contain; }
+
+.pbp-img-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/AEW.png);
+  background-size: contain; }
+
+.pbp-img-3 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/NJPW.png);
+  background-size: contain; }
+
+.pbp-img-4 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/general.png);
+  background-size: contain; }
+
+.pbp-img-5 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/feather.jpg); }
+
+.pbp-img-6 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/feather.jpg); }
+
+.pbp-info {
+  position: absolute;
+  width: inherit;
+  height: inherit; }
+
+.pbp-info h3 {
+  font-weight: 400;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  -webkit-text-fill-color: white;
+  font-size: 42px;
+  margin: 0 30px;
+  padding: 100px 0 0 0;
+  line-height: 1.5; }
+
+.pbp-info p {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  -webkit-text-stroke: .2px black;
+  -webkit-text-fill-color: white;
+  padding: 4px 5px;
+  margin: 0 30px;
+  font-size: 14px;
+  line-height: 2; }
+
+.search-container {
+  margin: 0 auto;
+  text-align: center; }
+
+.search-bar {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.counter {
+  padding: 8px;
+  color: #ccc; }
+
+.result-table {
+  width: 75% !important;
+  margin-left: auto;
+  margin-right: auto; }
+
+#first-col, #second-col, #third-col {
+  width: auto; }
+
+div.container {
+  margin-top: 40px; }
+
+.form-control:not(:last-child) {
+  margin-bottom: 10px; }
+
+.key1 {
+  background-color: #ff0000b0; }
+
+.key2 {
+  background-color: #ffa500d1; }
+
+.key3 {
+  background-color: yellow; }
+
+.key4 {
+  background-color: #008000a0; }
+
+.key5 {
+  background-color: blue;
+  color: white; }
+
+.key6 {
+  background-color: #8e2a8ea1; }
+
+.key7 {
+  background-color: pink; }
+
+.key8 {
+  background-color: skyblue; }
+
+.key9 {
+  background-color: silver; }
+
+.key10 {
+  background-color: navy;
+  color: white; }
+
+@media (max-width: 576px) {
+  .xs {
+    color: red;
+    font-weight: bold; } }
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 768px) {
+  .sm {
+    color: red;
+    font-weight: bold; } }
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) and (max-width: 992px) {
+  .md {
+    color: red;
+    font-weight: bold; } }
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .lg {
+    color: red;
+    font-weight: bold; } }
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .xl {
+    color: red;
+    font-weight: bold; } }
+.site-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #26272b;
+  padding: 45px 0 20px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #737373;
+  height: 24rem; }
+
+.site-footer hr {
+  border-top-color: #bbb;
+  opacity: 0.5; }
+
+.site-footer hr.small {
+  margin: 20px 0; }
+
+.site-footer h6 {
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 5px;
+  letter-spacing: 2px; }
+
+.site-footer a {
+  color: #737373; }
+
+.site-footer a:hover {
+  color: #3366cc;
+  text-decoration: none; }
+
+.footer-links {
+  padding-left: 0;
+  list-style: none; }
+
+.footer-links li {
+  display: block; }
+
+.footer-links a {
+  color: #737373; }
+
+.footer-links a:active, .footer-links a:focus, .footer-links a:hover {
+  color: #3366cc;
+  text-decoration: none; }
+
+.footer-links.inline li {
+  display: inline-block; }
+
+.site-footer .social-icons {
+  text-align: right; }
+
+.site-footer .social-icons a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 6px;
+  margin-right: 0;
+  border-radius: 100%;
+  background-color: #33353d; }
+
+.copyright-text {
+  margin: 0; }
+
+@media (max-width: 991px) {
+  .site-footer [class^=col-] {
+    margin-bottom: 30px; } }
+@media (max-width: 767px) {
+  .site-footer {
+    padding-bottom: 0; }
+
+  .site-footer .copyright-text, .site-footer .social-icons {
+    text-align: center; } }
+.social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.social-icons li {
+  display: inline-block;
+  margin-bottom: 4px; }
+
+.social-icons li.title {
+  margin-right: 15px;
+  text-transform: uppercase;
+  color: #96a2b2;
+  font-weight: 700;
+  font-size: 13px; }
+
+.social-icons a {
+  background-color: #eceeef;
+  color: #818a91;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 44px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all 0.2s linear; }
+
+.social-icons a:active, .social-icons a:focus, .social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe; }
+
+.social-icons.size-sm a {
+  line-height: 34px;
+  height: 34px;
+  width: 34px;
+  font-size: 14px; }
+
+.social-icons a.facebook:hover {
+  background-color: #3b5998; }
+
+.social-icons a.twitter:hover {
+  background-color: #00aced; }
+
+.social-icons a.linkedin:hover {
+  background-color: #007bb6; }
+
+.social-icons a.dribbble:hover {
+  background-color: #ea4c89; }
+
+@media (max-width: 767px) {
+  .social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600; } }

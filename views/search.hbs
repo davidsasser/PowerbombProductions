@@ -1,0 +1,46 @@
+{{> header }}
+        {{#if errors}}
+          {{#each errors}}
+            <div class="alert alert-danger">
+                {{this.msg}}
+            </div>
+          {{/each}}
+        {{/if}}
+        <div class="search-container">
+          <form method="post" action="/search">
+            <input type="text" name="keyword" class="search-bar"></input>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+        <span class="counter pull-right"></span>
+        {{#if docs}}
+          <table class="result-table table table-hover table-bordered results">
+          <thead>
+            <tr>
+              <th id="first-col" class="col-sm-3">#</th>
+              <th id="second-col" class="col-sm-6">Document Title</th>
+              <th id="second-col" class="col-sm-3">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each docs}}
+            <tr>
+              <th scope="row">{{inc @index}}</th>
+              <td><a href="/document?title={{this.title}}&id={{this.id}}">{{this.title}}</a></td>
+              <td>
+                <form style="display:inline;" method="post" action="/request_delete">
+                  <input type="text" name="doc" style="display:none;" value="{{this.title}}"></input>
+                  <button class="btn btn-primary">Request Deletion</button>
+                </form>
+              </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+        {{else}}
+          <div style="text-align: center">
+            Please enter keywords into the search bar separated by commas (up to 4 terms) to find relavent documents.
+          </div>
+        {{/if}}
+
+{{> footer }}

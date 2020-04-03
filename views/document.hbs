@@ -1,0 +1,21 @@
+{{> header }}
+
+<div>
+  <form action="/add_post" method="POST">
+
+    <input type="text" name="title" placeholder="Enter Title"><br>
+    <textarea id="editor" name="content">
+    </textarea>
+                <script>
+                  ClassicEditor
+                      .create( document.querySelector( '#editor' ) )
+                      .catch( error => {
+                          console.error( error );
+                      } );
+              </script>
+    <input id="file" type="file" name="photo" accept="image/*"/>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+{{> footer }}

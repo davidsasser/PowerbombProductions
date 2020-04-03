@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://kit.fontawesome.com/a72e1ee016.js" crossorigin="anonymous"></script>
+<script src="/js/d3.layout.cloud.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+<div id="page-container">
+  <div id="content-wrap">
+  <div class="header">
+    <a href="#default" class="logo"> <img src="/images/pbp-logo-header.png" height="60px"> </a>
+    <div class="header-right">
+      
+      <a class="{{#if active.home}}active{{/if}}" href="/">Home</a>
+      <a class="{{#if active.about}}active{{/if}}" href="/about">About</a>
+      {{#if isAuthenticated}}
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Forums
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">WWE</a>
+            <a class="dropdown-item" href="#">AEW</a>
+            <a class="dropdown-item" href="#">NJPW</a>
+            <a class="dropdown-item" href="#">General</a>
+            <a class="dropdown-item" href="#">Off Topic</a>
+          </div>
+      {{#if isAdmin}}
+      <a class="{{#if active.reports}}active{{/if}}" href="/document">Admin</a>
+      {{/if}}
+      <a class="" href="/logout">Logout</a>
+      {{else}}
+      <a class="{{#if active.login}}active{{/if}}" href="/login">Login</a>
+      <a class="{{#if active.register}}active{{/if}}" href="/register">Register</a>
+      {{/if}}
+    </div>
+  </div>

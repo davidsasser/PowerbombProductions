@@ -1,0 +1,57 @@
+.key1 {
+    background-color: #ff0000b0;
+}
+.key2 {
+    background-color: #ffa500d1;
+}
+.key3 {
+    background-color: yellow;
+}
+.key4 {
+    background-color: #008000a0;
+}
+.key5 {
+    background-color: blue;
+    color: white;
+}
+.key6 {
+    background-color: #8e2a8ea1;
+}
+.key7 {
+    background-color: pink;
+}
+.key8 {
+    background-color: skyblue;
+}
+.key9 {
+    background-color: silver;
+}
+.key10 {
+    background-color: navy;
+    color: white;
+}
+
+@media (max-width: 576px) {  
+    .xs {color:red;font-weight:bold;}
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) and (max-width:768px) {  
+    .sm {color:red;font-weight:bold;}
+  }
+   
+  /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+  @media (min-width: 768px) and (max-width:992px) {  
+   .md {color:red;font-weight:bold;}
+  }
+   
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width:1200px) { 
+   .lg {color:red;font-weight:bold;}
+  }
+   
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {  
+      .xl {color:red;font-weight:bold;}
+  }
+   
