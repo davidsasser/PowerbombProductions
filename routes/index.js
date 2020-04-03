@@ -298,12 +298,14 @@ router.get("/blogs",function(req,res){
 		if(err) {done(err)}
 		var posts = {};
 		for(var i = 1; i<=results.rows.length; i++) {
+			var created_on = results.rows[i-1].created_on;
+			// format date
 			posts[i] = {
 				"post_id": results.rows[i-1].post_id,
 				"title": results.rows[i-1].title,
 				"content": results.rows[i-1].content,
 				"user_id": results.rows[i-1].user_id,
-				"created": results.rows[i-1].created_on
+				"created": created_on
 			}
 		}
 		console.log(posts)
