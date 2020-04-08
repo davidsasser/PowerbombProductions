@@ -347,6 +347,7 @@ router.post("/add_post", authenticationMiddleware(), (req, res) => {
 	var title = req.body.title;
 	if(req.files) {
 		var photo = req.files.photo;
+		var ext = photo.name.split('.')[1];
 		photo.mv('./assets/images/' + photo.name)
 	}
 	var today = new Date();
@@ -357,9 +358,12 @@ router.post("/add_post", authenticationMiddleware(), (req, res) => {
 
 		var post_id = results.rows[0].post_id;
 		if(photo) {
-			db.query('INSERT INTO photo_in_post(post_id, img_position) VALUES ($1, $2)', [post_id, 1], (err, results, fields) => {
+			db.query('INSERT INTO photo_in_post(post_id, img_position) VALUES ($1, $2) RETURNING img_position', [post_id, 1], (err, results1, fields) => {
 				if(err) { console.log(err) }
 
+				var imgPos = results1.rows[0].img_position;
+				var newFile = post_id + '_' + imgPos + '.' + ext;
+				fs.rename('./assets/images/' + photo.name, './assets/images/' + newFile)
 			});
 		}
 		res.redirect('/about');
