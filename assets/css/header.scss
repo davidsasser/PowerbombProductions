@@ -61,6 +61,80 @@ body {
   color: Black;
 }
 
+.header-social-icons {
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+
+.top-line {
+  background-color: $button-color;
+
+  .text-right a {
+    vertical-align: middle;
+  }
+}
+
+.header-social-icons li
+{
+  display:inline-block;
+}
+.header-social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.header-social-icons a{
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  text-align:center;
+  margin-right:8px;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear;
+
+  .fab {
+    vertical-align: middle;
+  }
+}
+.header-social-icons a:active,.header-social-icons a:focus,.header-social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.header-social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.header-social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.header-social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.header-social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .header-social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+
 .header a.active {
   background-color: #b52727;
   color: white;

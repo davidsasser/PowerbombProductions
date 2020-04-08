@@ -8,6 +8,23 @@ const wf = require('../helpers/wordFreq.js')
 const flash = require('express-flash-notification');
 var nodemailer = require('nodemailer');
 const jwt = require('jwt-simple');
+const fs = require('fs');
+
+var path = require('path');
+
+const multer = require("multer");
+
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+  dest: '/assets/images/'
+  // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
 
 require('url-search-params-polyfill');
 
@@ -322,21 +339,31 @@ router.get("/register",function(req,res){
 });
 
 router.get("/post_blog", authenticationMiddleware(), (req,res) => {
-	var keywords = "idk";
-	var id = 9;
-	res.render('post_blog', {keywords: keywords, id: id});
+	res.render('post_blog', {active: { admin: true }});
 });
 
-router.post("/add_post", authenticationMiddleware(), (req,res) => {
+router.post("/add_post", authenticationMiddleware(), (req, res) => {
 	var content = req.body.content;
 	var title = req.body.title;
+	if(req.files) {
+		var photo = req.files.photo;
+		photo.mv('./assets/images/' + photo.name)
+	}
 	var today = new Date();
 	var created = today.toISOString().split('.')[0];
 
-	db.query('INSERT INTO posts(title, content, user_id, created_on) VALUES ($1, $2, $3, $4)', [title, content, 1, created], (err, results, fields) => {
+	db.query('INSERT INTO posts(title, content, user_id, created_on) VALUES ($1, $2, $3, $4) RETURNING post_id', [title, content, 1, created], (err, results, fields) => {
 		if(err) { done(err) }
+
+		var post_id = results.rows[0].post_id;
+		if(photo) {
+			db.query('INSERT INTO photo_in_post(post_id, img_position) VALUES ($1, $2)', [post_id, 1], (err, results, fields) => {
+				if(err) { console.log(err) }
+
+			});
+		}
+		res.redirect('/about');
 	});
-	res.redirect('/about');
 });
 
 router.post("/delete_document", authenticationMiddleware(), (req,res) => {

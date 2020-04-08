@@ -1,57 +1,96 @@
-.key1 {
-    background-color: #ff0000b0;
-}
-.key2 {
-    background-color: #ffa500d1;
-}
-.key3 {
-    background-color: yellow;
-}
-.key4 {
-    background-color: #008000a0;
-}
-.key5 {
-    background-color: blue;
-    color: white;
-}
-.key6 {
-    background-color: #8e2a8ea1;
-}
-.key7 {
-    background-color: pink;
-}
-.key8 {
-    background-color: skyblue;
-}
-.key9 {
-    background-color: silver;
-}
-.key10 {
-    background-color: navy;
-    color: white;
-}
-
 @media (max-width: 576px) {  
     .xs {color:red;font-weight:bold;}
-  }
-  
-  /* Small devices (landscape phones, 576px and up) */
-  @media (min-width: 576px) and (max-width:768px) {  
-    .sm {color:red;font-weight:bold;}
-  }
-   
-  /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-  @media (min-width: 768px) and (max-width:992px) {  
-   .md {color:red;font-weight:bold;}
-  }
-   
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) and (max-width:1200px) { 
-   .lg {color:red;font-weight:bold;}
-  }
-   
-  /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {  
-      .xl {color:red;font-weight:bold;}
-  }
-   
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width:768px) {  
+.sm {color:red;font-weight:bold;}
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) and (max-width:992px) {  
+.md {color:red;font-weight:bold;}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width:1200px) { 
+.lg {color:red;font-weight:bold;}
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    .xl {color:red;font-weight:bold;}
+}
+
+@mixin round-field($border, $fill) {
+    border: 2px solid $border;
+    color: $border;
+    background-color: $fill;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.blog-post-container {
+    margin: 2% 10%;
+}
+
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+
+.blog-submit {
+    input {
+        @include round-field(black, $button-color);
+    }
+    input:hover {
+        cursor: pointer;
+    }
+}
+.blog-title-entry {
+    margin-bottom: 20px;
+    width: 100%;
+    @include round-field(gray, white);
+}
+
+.blog-image-entry {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn {
+    @include round-field(black, $button-color);
+}
+
+.blog-image-entry {
+    margin: 20px 0px;
+    
+    input[type=file] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+
+.ck-editor__top {
+    border: 2px solid gray !important;
+    border-bottom: 0 !important;
+    border-radius: 4px !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.ck-editor__main {
+    border: 2px solid gray;
+    border-top: 0;
+    border-radius: 4px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}

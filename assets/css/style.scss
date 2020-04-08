@@ -1,3 +1,9 @@
+$button-color: #3b8beb;
+
+button:hover {
+    cursor: pointer;
+}
+
 @import "header";
 @import "search";
 @import "login";

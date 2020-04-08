@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Pacifico");
+button:hover {
+  cursor: pointer; }
+
 * {
   box-sizing: border-box; }
 
@@ -53,6 +56,62 @@ body {
   background-color: #ddd;
   color: Black; }
 
+.header-social-icons {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.top-line {
+  background-color: #3b8beb; }
+  .top-line .text-right a {
+    vertical-align: middle; }
+
+.header-social-icons li {
+  display: inline-block; }
+
+.header-social-icons li.title {
+  margin-right: 15px;
+  text-transform: uppercase;
+  color: #96a2b2;
+  font-weight: 700;
+  font-size: 13px; }
+
+.header-social-icons a {
+  color: #818a91;
+  font-size: 16px;
+  display: inline-block;
+  text-align: center;
+  margin-right: 8px;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear; }
+  .header-social-icons a .fab {
+    vertical-align: middle; }
+
+.header-social-icons a:active, .header-social-icons a:focus, .header-social-icons a:hover {
+  color: #fff;
+  background-color: #29aafe; }
+
+.header-social-icons.size-sm a {
+  line-height: 34px;
+  height: 34px;
+  width: 34px;
+  font-size: 14px; }
+
+.header-social-icons a.facebook:hover {
+  background-color: #3b5998; }
+
+.header-social-icons a.twitter:hover {
+  background-color: #00aced; }
+
+.header-social-icons a.dribbble:hover {
+  background-color: #ea4c89; }
+
+@media (max-width: 767px) {
+  .header-social-icons li.title {
+    display: block;
+    margin-right: 0;
+    font-weight: 600; } }
 .header a.active {
   background-color: #b52727;
   color: white; }
@@ -182,38 +241,6 @@ div.container {
 .form-control:not(:last-child) {
   margin-bottom: 10px; }
 
-.key1 {
-  background-color: #ff0000b0; }
-
-.key2 {
-  background-color: #ffa500d1; }
-
-.key3 {
-  background-color: yellow; }
-
-.key4 {
-  background-color: #008000a0; }
-
-.key5 {
-  background-color: blue;
-  color: white; }
-
-.key6 {
-  background-color: #8e2a8ea1; }
-
-.key7 {
-  background-color: pink; }
-
-.key8 {
-  background-color: skyblue; }
-
-.key9 {
-  background-color: silver; }
-
-.key10 {
-  background-color: navy;
-  color: white; }
-
 @media (max-width: 576px) {
   .xs {
     color: red;
@@ -238,6 +265,75 @@ div.container {
   .xl {
     color: red;
     font-weight: bold; } }
+.blog-post-container {
+  margin: 2% 10%; }
+
+.ck-editor__editable_inline {
+  min-height: 400px; }
+
+.blog-submit input {
+  border: 2px solid black;
+  color: black;
+  background-color: #3b8beb;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold; }
+.blog-submit input:hover {
+  cursor: pointer; }
+
+.blog-title-entry {
+  margin-bottom: 20px;
+  width: 100%;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold; }
+
+.blog-image-entry {
+  position: relative;
+  overflow: hidden;
+  display: inline-block; }
+
+.btn {
+  border: 2px solid black;
+  color: black;
+  background-color: #3b8beb;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold; }
+
+.blog-image-entry {
+  margin: 20px 0px; }
+  .blog-image-entry input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold; }
+
+.ck-editor__top {
+  border: 2px solid gray !important;
+  border-bottom: 0 !important;
+  border-radius: 4px !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important; }
+
+.ck-editor__main {
+  border: 2px solid gray;
+  border-top: 0;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0; }
+
 .site-footer {
   position: absolute;
   bottom: 0;
@@ -357,9 +453,6 @@ div.container {
 
 .social-icons a.twitter:hover {
   background-color: #00aced; }
-
-.social-icons a.linkedin:hover {
-  background-color: #007bb6; }
 
 .social-icons a.dribbble:hover {
   background-color: #ea4c89; }
