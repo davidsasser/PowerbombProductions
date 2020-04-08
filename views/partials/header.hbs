@@ -18,27 +18,25 @@
 <div id="page-container">
   <div id="content-wrap">
     <div class="top-line">
-				<div style="display:flex">
-						<div class="col-md-6 col-sm-6 col-xs-6">
-								<ul class="header-social-icons">
-                  <li><a class="facebook" href="#"><i class="fab fa-facebook-square"></i></a></li>
-                  <li><a class="twitter" href="#"><i class="fab fa-twitter-square"></i></a></li>
-                  <li><a class="dribbble" href="#"><i class="fab fa-instagram-square"></i></a></li>
-                </ul>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6 text-right">
-								{{#if isAuthenticated}}
-                <a class="" href="/logout">Logout</a>
-                {{else}}
-                <a class="" href="/login">Login</a>
-                <a class="" href="/register">Register</a>
-                {{/if}}
-						</div>
-				</div>
-</div>
+      <div style="display:flex">
+        <div class="header-social-icons">
+          <a href=""><i class="fab fa-facebook-square"></i></a>
+          <a href=""><i class="fab fa-twitter-square"></i></a>
+          <a href=""><i class="fab fa-instagram-square"></i></a>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+          {{#if isAuthenticated}}
+          <a class="header-link" href="/logout">Logout</a>
+          {{else}}
+          <a class="header-link" href="/login">Sign In</a>
+          <a class="header-link" href="/register">Register</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
     
   <div class="header">
-    <a href="#default" class="logo"> <img src="/images/pbp-logo-header.png" height="60px"> </a>
+    <a href="#default" class="logo"> <img src="/images/pbp-logo-header.png" height="72px"> </a>
     <div class="header-right">
       
       <a class="{{#if active.home}}active{{/if}}" href="/">Home</a>

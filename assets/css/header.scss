@@ -20,14 +20,14 @@ body {
 .header {
   overflow: hidden;
   background-color: #f1f1f1;
-  padding: 20px 10px;
+  padding: 8px 50px;
 }
 
 .header a {
   float: left;
   color: black;
   text-align: center;
-  padding: 12px;
+  padding: 0px;
   text-decoration: none;
   font-size: 22px; 
   line-height: 36px;
@@ -62,16 +62,27 @@ body {
 }
 
 .header-social-icons {
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
+  padding: 0;
+  margin-bottom: 0;
+  list-style: none;
+  width: 50%;
 }
 
 .top-line {
   background-color: $button-color;
+  padding: 0px 50px;
+
+  div {
+    height: 32px;
+    div {
+      padding-left: 0px;
+    }
+  }
 
   .text-right a {
-    vertical-align: middle;
+    vertical-align: sub;
+    color: black;
+    font-size: 16px;
   }
 }
 
@@ -85,13 +96,14 @@ body {
   text-transform:uppercase;
   color:#96a2b2;
   font-weight:700;
-  font-size:13px
+  font-size: 13px
 }
 .header-social-icons a{
-  color:#818a91;
-  font-size:16px;
+  color: black;
   display:inline-block;
   text-align:center;
+  height: 32px;
+  padding: 4px 0px;
   margin-right:8px;
   -webkit-transition:all .2s linear;
   -o-transition:all .2s linear;
@@ -99,31 +111,17 @@ body {
 
   .fab {
     vertical-align: middle;
+    font-size: 24px;
+    color: black;
   }
 }
-.header-social-icons a:active,.header-social-icons a:focus,.header-social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
-}
+
 .header-social-icons.size-sm a
 {
   line-height:34px;
   height:34px;
   width:34px;
   font-size:14px
-}
-.header-social-icons a.facebook:hover
-{
-  background-color:#3b5998
-}
-.header-social-icons a.twitter:hover
-{
-  background-color:#00aced
-}
-.header-social-icons a.dribbble:hover
-{
-  background-color:#ea4c89
 }
 @media (max-width:767px)
 {
@@ -142,8 +140,12 @@ body {
 
 .header-right {
   float: right;
-  height: 84px;
-  padding: 12px;
+  height: 72px;
+  padding: 6px;
+
+  a {
+    padding: 12px;
+  }
 }
 
 @media screen and (max-width: 500px) {
