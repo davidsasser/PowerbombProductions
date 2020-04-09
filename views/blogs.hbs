@@ -1,24 +1,22 @@
 {{> header }}
-<div class="container">
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+
+<div class="main">
+  <ul class="cards">
     {{#if posts}}
         {{#each posts}}
-            
-  <div class="col mb-4">
-    <div class="card">
-      <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/bologna-2.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text">{{this.content}}</p>
+    <li class="cards-item">
+      <div class="card">
+        <div class="card-image"><img src="{{this.photo}}"></div>
+        <div class="card-content">
+          <h2 class="card-title">{{this.title}}</h2>
+          <p class="card-text">{{this.content}}</p>
+          <button class="card-btn">Read More</button>
+        </div>
       </div>
-    </div>
-  </div>
-  
-  
-  
-        {{/each}}
+    </li>
+    {{/each}}
     {{/if}}
-</div>
-
+   
+  </ul>
 </div>
 {{> footer }}

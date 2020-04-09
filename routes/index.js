@@ -311,18 +311,32 @@ router.get("/about",function(req,res){
 });
 
 router.get("/blogs",function(req,res){
-	db.query('SELECT * FROM posts', (err, results, done) => {
+	db.query('SELECT * FROM posts p LEFT JOIN photo_in_post pp ON p.post_id = pp.post_id;', (err, results, done) => {
 		if(err) {done(err)}
 		var posts = {};
 		for(var i = 1; i<=results.rows.length; i++) {
 			var created_on = results.rows[i-1].created_on;
-			// format date
+			var post_id = results.rows[i-1].post_id;
+			var title = results.rows[i-1].title;
+			var content = results.rows[i-1].content;
+			var user_id = results.rows[i-1].user_id;
+			var imgPos = results.rows[i-1].img_position;
+			var ext = results.rows[i-1].extension;
+			var photo = '/images/';
+			if (imgPos == null) {
+				photo =	photo + 'WWE.png'
+			}
+			else {
+				photo = photo + post_id + '_' + imgPos + '.' + ext;
+			}
+				// format date
 			posts[i] = {
-				"post_id": results.rows[i-1].post_id,
-				"title": results.rows[i-1].title,
-				"content": results.rows[i-1].content,
-				"user_id": results.rows[i-1].user_id,
-				"created": created_on
+				"post_id": post_id,
+				"title": title,
+				"content": content,
+				"user_id": user_id,
+				"created": created_on,
+				"photo": photo
 			}
 		}
 		console.log(posts)
@@ -358,7 +372,7 @@ router.post("/add_post", authenticationMiddleware(), (req, res) => {
 
 		var post_id = results.rows[0].post_id;
 		if(photo) {
-			db.query('INSERT INTO photo_in_post(post_id, img_position) VALUES ($1, $2) RETURNING img_position', [post_id, 1], (err, results1, fields) => {
+			db.query('INSERT INTO photo_in_post(post_id, img_position, extension) VALUES ($1, $2, $3) RETURNING img_position', [post_id, 1, ext], (err, results1, fields) => {
 				if(err) { console.log(err) }
 
 				var imgPos = results1.rows[0].img_position;

@@ -39,8 +39,8 @@
     <a href="#default" class="logo"> <img src="/images/pbp-logo-header.png" height="72px"> </a>
     <div class="header-right">
       
-      <a class="{{#if active.home}}active{{/if}}" href="/">Home</a>
-      <a class="{{#if active.about}}active{{/if}}" href="/about">About</a>
+      <a class="nav-link {{#if active.home}}active{{/if}}" href="/">Home</a>
+      <a class="nav-link {{#if active.about}}active{{/if}}" href="/about">About</a>
       {{#if isAuthenticated}}
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Forums
@@ -53,12 +53,8 @@
             <a class="dropdown-item" href="#">Off Topic</a>
           </div>
       {{#if isAdmin}}
-      <a class="{{#if active.admin}}active{{/if}}" href="/post_blog">Admin</a>
+      <a class="nav-link {{#if active.admin}}active{{/if}}" href="/post_blog">Admin</a>
       {{/if}}
-      <a class="" href="/logout">Logout</a>
-      {{else}}
-      <a class="{{#if active.login}}active{{/if}}" href="/login">Login</a>
-      <a class="{{#if active.register}}active{{/if}}" href="/register">Register</a>
       {{/if}}
     </div>
   </div>
