@@ -365,7 +365,9 @@ router.post("/add_post", authenticationMiddleware(), (req, res) => {
 
 				var imgPos = results1.rows[0].img_position;
 				var newFile = post_id + '_' + imgPos + '.' + ext;
-				fs.rename('./assets/images/' + photo.name, './assets/images/' + newFile)
+				fs.rename('./assets/images/' + photo.name, './assets/images/' + newFile, function (err) {
+					if (err) throw err;
+				});
 			});
 		}
 		res.redirect('/about');
