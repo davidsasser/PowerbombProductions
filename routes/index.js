@@ -328,7 +328,7 @@ router.get("/blogs",function(req,res){
 			}
 		}
 		console.log(posts)
-		res.render('blogs', {active: { reports: true }, posts: posts});
+		res.render('blogs', {active: { blogs: true }, posts: posts});
 	});
 });
 
@@ -370,7 +370,7 @@ router.post("/add_post", authenticationMiddleware(), (req, res) => {
 				});
 			});
 		}
-		res.redirect('/about');
+		res.redirect('/blogs');
 	});
 });
 
