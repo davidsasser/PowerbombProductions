@@ -125,8 +125,8 @@ passport.use(new LocalStrategy(
 ));
 
 // starts the server instance
-app.listen(8000,function(){
-  console.log("Live at Port 8000");
+app.listen(process.env.PORT, function(){
+  console.log(`Live at Port ${process.env.PORT}`);
 });
 
 module.exports = app
