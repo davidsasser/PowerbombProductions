@@ -31,7 +31,6 @@
     "jsdom": "^13.2.0",
     "jwt-simple": "^0.5.6",
     "mammoth": "^1.4.9",
-    "multer": "^1.4.2",
     "nodemailer": "^5.1.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

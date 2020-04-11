@@ -12,19 +12,7 @@ const fs = require('fs');
 
 var path = require('path');
 
-const multer = require("multer");
 
-const handleError = (err, res) => {
-  res
-    .status(500)
-    .contentType("text/plain")
-    .end("Oops! Something went wrong!");
-};
-
-const upload = multer({
-  dest: '/assets/images/'
-  // you might also want to set some limits: https://github.com/expressjs/multer#limits
-});
 
 require('url-search-params-polyfill');
 
