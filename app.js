@@ -46,10 +46,8 @@ var hbs = require('express-handlebars');
 
 app.engine('hbs', hbs({
   extname: 'hbs',  
-  partialsDir  : [
-      //  path to your partials
-      path.join(__dirname, 'views/partials'),
-  ],
+  partialsDir: path.join(__dirname, 'views/partials'),
+  layoutsDir: path.join(__dirname, 'views/layouts'),
   helpers: {
     inc: function(value, options) { return parseInt(value) + 1; }
   }
