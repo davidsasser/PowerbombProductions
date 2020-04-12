@@ -24,7 +24,7 @@ body {
 
 .header {
   overflow: hidden;
-  background-color: #9c9696;
+  background-color: black;
   padding: 8px 50px; }
 
 .header a.nav-link {
@@ -70,7 +70,7 @@ body {
   width: 50%; }
 
 .top-line {
-  background-color: #1c64bb;
+  background-color: #d7182a;
   padding: 0px 50px; }
   .top-line div {
     height: 32px; }
@@ -119,6 +119,9 @@ body {
 .header a.active {
   background-color: #d7182a;
   color: white; }
+  .header a.active:hover {
+    background-color: #d7182a;
+    color: white; }
 
 .header-right {
   float: right;
@@ -280,7 +283,7 @@ div.container {
 .blog-submit input {
   border: 2px solid black;
   color: black;
-  background-color: #1c64bb;
+  background-color: #d7182a;
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 20px;
@@ -307,7 +310,7 @@ div.container {
 .btn {
   border: 2px solid black;
   color: black;
-  background-color: #1c64bb;
+  background-color: #d7182a;
   padding: 8px 20px;
   border-radius: 8px;
   font-size: 20px;
@@ -355,7 +358,8 @@ h1 {
   vertical-align: middle; }
 
 .card-btn {
-  color: #ffffff;
+  color: #ffffff !important;
+  text-align: center;
   padding: 0.8rem;
   font-size: 14px;
   text-transform: uppercase;
@@ -394,7 +398,7 @@ h1 {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: linear-gradient(to bottom left, #1c64bb 40%, black 100%); }
+  background: linear-gradient(to bottom left, #d7182a 40%, black 100%); }
 
 .card-content {
   padding: 1rem;

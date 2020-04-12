@@ -22,7 +22,7 @@ body {
 
 .header {
   overflow: hidden;
-  background-color: #9c9696;
+  background-color: black;
   padding: 8px 50px;
 }
 
@@ -143,6 +143,11 @@ body {
 .header a.active {
   background-color: #d7182a;
   color: white;
+
+  &:hover {
+    background-color: #d7182a;
+    color: white;
+  }
 }
 
 .header-right {
