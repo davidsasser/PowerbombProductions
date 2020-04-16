@@ -1,9 +1,38 @@
 {{> header }}
-<div class="main">
-        <div><img src="{{posts.photo}}"></div>
-        <div>
-          <h2>{{posts.title}}</h2>
-          <div>{{{posts.content}}}</div>
-        </div>
-</div>
+<section class="blog-container">
+    <div class="blog-row">
+      <main class="blog-col-main">
+        <article class="blog-article">
+          <header class="blog-header">
+            <h1 class="blog-title">{{posts.title}}</h1>
+          </header>
+          <section class="blog-meta">
+            <div class="byline">
+              <span class="byline__authorname">{{posts.username}}</span>
+              <br/>
+              <span class="byline__timestamp">{{posts.created}}</span>
+            </div>
+          </section>
+          <section class="blog-details">
+            <div class="blog-image-container">
+              <img src="{{posts.photo}}">
+            </div>
+            <div class="blog-content">{{{posts.content}}}</div>
+          </section>
+          <footer class="blog-footer">
+            <section class="blog-meta-footer">
+              <div class="byline">
+                <span class="byline__authorname">{{posts.username}}</span>
+                <br/>
+                <span class="byline__timestamp">{{posts.created}}</span>
+              </div>
+            </section>
+          </footer>
+          </article>
+      </main>
+      <aside class="blog-col-aside">
+
+      </aside>
+    </div>
+</section>
 {{> footer}}

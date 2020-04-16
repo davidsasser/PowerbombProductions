@@ -8,17 +8,20 @@ blogs.get("/blogs",function(req,res){
 		if(err) {done(err)}
 		var posts = {};
 		for(var i = 1; i<=results.rows.length; i++) {
-			console.log(results.rows[i-1]);
-			var created_on = results.rows[i-1].created_on;
+            var created_on = results.rows[i-1].created_on;
 			var post_id = results.rows[i-1].post_id;
 			var title = results.rows[i-1].title;
-			var content = results.rows[i-1].content;
+            var content = results.rows[i-1].content;
+            content = content.replace( /(<([^>]+)>)/ig, '').replace(/&nbsp;/gi,'').split(' ').slice(0,18).join(' ');
+            if(content.slice(-1) !== '.') {
+                content = content + '...';
+            }
 			var user_id = results.rows[i-1].user_id;
 			var imgPos = results.rows[i-1].img_position;
 			var ext = results.rows[i-1].extension;
 			var photo = '/images/';
 			if (imgPos == null) {
-				photo =	photo + 'WWE.png'
+				photo =	photo + 'logo-black.png'
 			}
 			else {
 				photo = photo + post_id + '_' + imgPos + '.' + ext;
@@ -40,12 +43,21 @@ blogs.get("/blogs",function(req,res){
 blogs.get("/blogs/:id",function(req,res){
 	var post_id = req.params.id;
 	console.log(post_id)
-	db.query('SELECT * FROM posts p LEFT JOIN photo_in_post pp ON p.post_id = pp.post_id WHERE p.post_id=$1', [post_id], (err, results, done) => {
+	db.query('SELECT p.post_id as post_id, title, content, username, p.created_on as created_on, img_id, img_position, extension FROM posts p LEFT JOIN photo_in_post pp ON p.post_id = pp.post_id LEFT JOIN user_account u ON p.user_id = u.user_id WHERE p.post_id=$1', [post_id], (err, results, done) => {
 		if(err) {done(err)}
-		var created_on = results.rows[0].created_on;
+        var created_on = results.rows[0].created_on;
+        var d = new Date(created_on + "UTC")
+        var formattedDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+        var am_pm = (d.getHours() > 11) ? "PM" : "AM"
+        var hours = (d.getHours() < 1) ? "12" : d.getHours();
+        hours = (hours > 12 ) ? hours - 12 : hours;
+        var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
+        var formattedTime = hours + ":" + minutes + " " + am_pm;
+        created = formattedDate + " " + formattedTime;
 		var title = results.rows[0].title;
 		var content = results.rows[0].content;
-		var user_id = results.rows[0].user_id;
+        var username= results.rows[0].username;
+        console.log(username)
 		var imgPos = results.rows[0].img_position;
 		var ext = results.rows[0].extension;
 		var photo = '/images/';
@@ -60,8 +72,8 @@ blogs.get("/blogs/:id",function(req,res){
 			"post_id": post_id,
 			"title": title,
 			"content": content,
-			"user_id": user_id,
-			"created": created_on,
+			"username": username,
+			"created": created,
 			"photo": photo
 		};
 		res.render('blog_view', {active: { blogs: true }, posts: posts});
