@@ -14,10 +14,6 @@ body {
   min-height: 100vh;
 }
 
-#content-wrap{
-  padding-bottom: 28rem;
-}
-
 #alert-message{
   margin: 20px;
 }
@@ -83,7 +79,6 @@ body {
 }
 
 .top-line {
-  background-color: $button-color;
   padding: 0px 50px;
 
   div {
@@ -147,11 +142,9 @@ body {
 }
 
 .header a.active {
-  background-color: #d7182a;
   color: white;
 
   &:hover {
-    background-color: #d7182a;
     color: white;
   }
 }
@@ -288,4 +281,8 @@ body {
   margin-right: -50%;
   transform: translate(-50%, -50%);
   font-size: 55px;
+}
+
+#content-wrap {
+  padding-bottom: 222px;
 }

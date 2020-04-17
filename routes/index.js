@@ -3,9 +3,11 @@ var router = express.Router();
 
 const blogs = require('./blogs');
 const login = require('./login');
+const forums = require('./forums');
 
 router.use('/', blogs);
 router.use('/', login);
+router.use('/forums', forums);
 
 require('url-search-params-polyfill');
 

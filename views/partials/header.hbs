@@ -1,6 +1,6 @@
 <div id="page-container">
   <div id="content-wrap">
-    <div class="top-line">
+    <div class="top-line red darken-4">
       <div style="display:flex">
         <div class="header-social-icons">
           <a href=""><i class="fab fa-facebook-square"></i></a>
@@ -20,12 +20,12 @@
     </div>
     
   <div class="header">
-    <a href="#default" class="logo"> <img src="/images/pbp-logo-header.png" height="72px"> </a>
+    <a href="#default" class="logo"> <img src="/images/pbp-logo-header-dark-red.png" height="72px"> </a>
     <div class="header-right">
       
-      <a class="nav-link {{#if active.home}}active{{/if}}" href="/">Home</a>
-      <a class="nav-link {{#if active.about}}active{{/if}}" href="/about">About</a>
-      <a class="nav-link {{#if active.blogs}}active{{/if}}" href="/blogs">Blogs</a>
+      <a class="nav-link {{#if active.home}}active red darken-4{{/if}}" href="/">Home</a>
+      <a class="nav-link {{#if active.about}}active red darken-4{{/if}}" href="/about">About</a>
+      <a class="nav-link {{#if active.blogs}}active red darken-4{{/if}}" href="/blogs">Blogs</a>
       {{#if isAuthenticated}}
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Forums
@@ -38,7 +38,7 @@
             <a class="dropdown-item" href="#">Off Topic</a>
           </div>
       {{#if isAdmin}}
-      <a class="nav-link {{#if active.admin}}active{{/if}}" href="/post_blog">Admin</a>
+      <a class="nav-link {{#if active.admin}}active red darken-4{{/if}}" href="/post_blog">Admin</a>
       {{/if}}
       {{/if}}
     </div>

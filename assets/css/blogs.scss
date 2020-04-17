@@ -35,7 +35,7 @@
     box-shadow: 0 0 3px 0 rgba(51,51,51,.18);
     background: #fff;
     border-top: none;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
 .blog-title {
@@ -87,4 +87,32 @@
     border-top: 1px solid #f1f1f1;
     padding-top: .75rem;
     padding-bottom: .75rem;
+}
+
+.blog-sidebar {
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.promo-link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    background: #fff;
+    box-shadow: 0 0 3px 0 rgba(51,51,51,.18);
+}
+
+.promo-image {
+    display: block;
+    height: 100px;
+    width: auto;
+}
+
+.promo-text {
+    padding: .5rem 1rem;
+    display: block;
+    font-family: Helvetica Neue,Helvetica,Segoe UI,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #222;
 }
