@@ -20,18 +20,18 @@
     </div>
     
   <div class="header">
-    <a href="#default" class="logo"> <img src="/images/pbp-logo-header-dark-red.png" height="72px"> </a>
+    <a href="/" class="logo"> <img src="/images/pbp-logo-header-dark-red.png" height="72px"> </a>
     <div class="header-right">
       
       <a class="nav-link {{#if active.home}}active red darken-4{{/if}}" href="/">Home</a>
       <a class="nav-link {{#if active.about}}active red darken-4{{/if}}" href="/about">About</a>
       <a class="nav-link {{#if active.blogs}}active red darken-4{{/if}}" href="/blogs">Blogs</a>
       {{#if isAuthenticated}}
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link {{#if active.forum}}active red darken-4{{/if}} dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Forums
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">WWE</a>
+            <a class="dropdown-item" href="/forums/wwe">WWE</a>
             <a class="dropdown-item" href="#">AEW</a>
             <a class="dropdown-item" href="#">NJPW</a>
             <a class="dropdown-item" href="#">General</a>

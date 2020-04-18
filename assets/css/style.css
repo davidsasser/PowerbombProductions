@@ -5,9 +5,6 @@ button:hover {
 * {
   box-sizing: border-box; }
 
-body {
-  background-color: #d8d8d8; }
-
 .divider {
   vertical-align: text-top;
   color: #cccccc;
@@ -22,7 +19,8 @@ body {
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif; }
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eeeeee; }
 
 .header {
   overflow: hidden;
@@ -349,7 +347,7 @@ div.container {
 
 .main {
   max-width: 1200px;
-  margin: 0 auto; }
+  margin: 2rem auto; }
 
 h1 {
   font-size: 24px;
@@ -489,7 +487,7 @@ h1 {
   max-width: 75rem;
   margin: 0 auto;
   padding: 0;
-  margin-top: 50px; }
+  margin-top: 40px; }
 
 .blog-row {
   display: flex;
@@ -513,7 +511,9 @@ h1 {
   box-shadow: 0 0 3px 0 rgba(51, 51, 51, 0.18);
   background: #fff;
   border-top: none;
-  margin-bottom: 3rem; }
+  margin-bottom: 3rem;
+  border-radius: 4px;
+  border: 1px solid #cccccc; }
 
 .blog-title {
   font-size: 1.875rem !important;
@@ -581,3 +581,125 @@ h1 {
   font-size: 12px;
   font-weight: 700;
   color: #222; }
+
+.page-title {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 40px; }
+  .page-title h1 {
+    font-size: 60px;
+    font-weight: 600;
+    padding-right: .9375rem;
+    padding-left: .9375rem;
+    text-align: left; }
+
+.add-post-container {
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 16px;
+  padding: 8px;
+  box-shadow: 0 0 3px 0 rgba(51, 51, 51, 0.18); }
+  .add-post-container .add-post-input {
+    background-color: #f6f7f8;
+    border-radius: 4px;
+    border: 1px solid #edeff1;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #1c1c1c;
+    display: block;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    outline: none;
+    padding: 0 16px;
+    height: 38px; }
+
+.forum-thread-container {
+  min-height: 800px;
+  width: 100%; }
+  .forum-thread-container .forum-thread-post {
+    border-radius: 4px;
+    padding-left: 40px;
+    cursor: pointer;
+    --post-line-color: #cccccc;
+    --post-icon-color: #898989;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #ffffffcc;
+    color: #eeeeee;
+    position: relative;
+    color: black; }
+    .forum-thread-container .forum-thread-post .thread-post-info {
+      padding-top: 8px;
+      position: relative; }
+      .forum-thread-container .forum-thread-post .thread-post-info .posted-by-container {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        margin: 0 8px 8px;
+        position: relative; }
+        .forum-thread-container .forum-thread-post .thread-post-info .posted-by-container .posted-by {
+          flex: 1 1 auto;
+          -ms-flex-align: center;
+          align-items: center;
+          overflow: hidden; }
+          .forum-thread-container .forum-thread-post .thread-post-info .posted-by-container .posted-by .forum-byline {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 16px;
+            -ms-flex-align: center;
+            align-items: center;
+            color: inherit;
+            display: inline; }
+      .forum-thread-container .forum-thread-post .thread-post-info .forum-title-container {
+        margin: 0 8px; }
+        .forum-thread-container .forum-thread-post .thread-post-info .forum-title-container .forum-title {
+          display: inline;
+          position: relative;
+          text-decoration: none;
+          word-break: break-word; }
+  .forum-thread-container .forum-meta {
+    width: 40px;
+    border-left: 4px solid transparent;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    padding: 8px 4px 8px 0;
+    position: absolute;
+    top: 0;
+    background-color: #eee; }
+    .forum-thread-container .forum-meta .meta-container {
+      -ms-flex-align: center;
+      align-items: center;
+      display: -ms-flexbox;
+      display: flex;
+      fill: inherit;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      margin: auto; }
+      .forum-thread-container .forum-meta .meta-container .num-of-replies {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 16px;
+        pointer-events: none;
+        word-break: normal; }
+      .forum-thread-container .forum-meta .meta-container .replies-text {
+        font-size: 10px;
+        line-height: 16px;
+        pointer-events: none;
+        word-break: normal; }

@@ -4,7 +4,15 @@ const auth = require('../../helpers/auth');
 const fs = require('fs');
 
 forums.get("/wwe", (req,res) => {
-
+    var topics = {}
+    for(var i = 1; i < 10; i++) {
+        topics[i] = {
+            "replies": Math.floor(Math.random() * 90 + 10),
+            "user": "test-user",
+            "title": `This is title # ${i}.`
+        }
+    }
+    res.render('forum', {active: { forum: true }, topics: topics});
 });
 
 forums.get("/aew", (req,res) => {
