@@ -36,7 +36,15 @@
                             </div>
                             <i class="fas fa-thumbtack pinned-icon fa-rotate-45"></i>
                             {{#if ../isAdmin}}
-                            <a class="admin-options-icon"><i class="material-icons">more_horiz</i></a>
+                                <a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_horiz</i></a>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
+                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
+                                    </form>
+                                    <form method="post" action="/forums/unpin_topic/{{this.topic_type}}/{{this.topic_id}}">
+                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Unpin Topic</a>
+                                    </form>
+                                </div>
                             {{/if}}
                         </div>
                     </div>
@@ -69,8 +77,12 @@
                             {{#if ../isAdmin}}
                                 <a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_horiz</i></a>
                                 <div class="dropdown-menu dropdown-primary">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Pin Topic</a>
+                                    <form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
+                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
+                                    </form>
+                                    <form method="post" action="/forums/pin_topic/{{this.topic_type}}/{{this.topic_id}}">
+                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Pin Topic</a>
+                                    </form>
                                 </div>
                             {{/if}}
                         </div>
