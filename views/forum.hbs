@@ -10,6 +10,38 @@
             </div>
             <hr>
                 <div class="forum-thread-container">
+                {{#if pinned}}
+                    {{#each pinned}}
+                    <div>
+                        <div class="forum-thread-post pinned">
+                            <div class="forum-meta">
+                                <div class="meta-container">
+                                    <div class="num-of-replies">{{this.replies}}</div>
+                                    <div class="replies-text">Replies</div>
+                                </div>
+                            </div>
+                            <div class="thread-post-info">
+                                <div class="posted-by-container">
+                                    <div class="posted-by">
+                                        <div class="forum-byline">
+                                            <span class="byline-text">Posted by {{this.user}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="forum-title-container">
+                                    <div class="forum-title">
+                                        <h3>{{this.title}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-thumbtack pinned-icon fa-rotate-45"></i>
+                            {{#if ../isAdmin}}
+                            <a class="admin-options-icon"><i class="material-icons">more_horiz</i></a>
+                            {{/if}}
+                        </div>
+                    </div>
+                    {{/each}}
+                {{/if}}
                 {{#if topics}}
                     {{#each topics}}
                     <div>
@@ -34,6 +66,13 @@
                                     </div>
                                 </div>
                             </div>
+                            {{#if ../isAdmin}}
+                                <a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_horiz</i></a>
+                                <div class="dropdown-menu dropdown-primary">
+                                    <a class="dropdown-item" href="#"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Pin Topic</a>
+                                </div>
+                            {{/if}}
                         </div>
                     </div>
                     {{/each}}

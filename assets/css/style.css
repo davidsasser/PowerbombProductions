@@ -436,7 +436,7 @@ h1 {
 
 .social-icons li {
   display: inline-block;
-  margin-bottom: 4px; }
+  margin-bottom: 0 !important; }
 
 .social-icons a {
   border: 1px solid white;
@@ -617,10 +617,15 @@ h1 {
     outline: none;
     padding: 0 16px;
     height: 38px; }
+    .add-post-container .add-post-input:hover {
+      border: 1px solid #0079d3;
+      background-color: #ffffff; }
 
 .forum-thread-container {
   min-height: 800px;
   width: 100%; }
+  .forum-thread-container .pinned {
+    background-color: #b71c1c14 !important; }
   .forum-thread-container .forum-thread-post {
     border-radius: 4px;
     padding-left: 40px;
@@ -629,11 +634,12 @@ h1 {
     --post-icon-color: #898989;
     border: 1px solid #cccccc;
     margin-bottom: 10px;
-    overflow: hidden;
     background-color: #ffffffcc;
     color: #eeeeee;
     position: relative;
     color: black; }
+    .forum-thread-container .forum-thread-post:hover {
+      border: 1px solid #2c2c2c; }
     .forum-thread-container .forum-thread-post .thread-post-info {
       padding-top: 8px;
       position: relative; }
@@ -703,3 +709,27 @@ h1 {
         line-height: 16px;
         pointer-events: none;
         word-break: normal; }
+
+.fa-rotate-45 {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+.pinned-icon {
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.admin-options-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 1px;
+  margin-right: 4px;
+  height: 24px;
+  border-radius: 2px; }
+  .admin-options-icon:hover {
+    background-color: #ccc; }
