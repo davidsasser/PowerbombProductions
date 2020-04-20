@@ -31,11 +31,11 @@
             Forums
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/forums/wwe">WWE</a>
-            <a class="dropdown-item" href="#">AEW</a>
-            <a class="dropdown-item" href="#">NJPW</a>
-            <a class="dropdown-item" href="#">General</a>
-            <a class="dropdown-item" href="#">Off Topic</a>
+            <a class="dropdown-item {{#if active.wwe}}active-item red darken-4{{/if}}" href="/forums/wwe">WWE</a>
+            <a class="dropdown-item {{#if active.aew}}active-item red darken-4{{/if}}" href="/forums/aew">AEW</a>
+            <a class="dropdown-item {{#if active.njpw}}active-item red darken-4{{/if}}" href="/forums/njpw">NJPW</a>
+            <a class="dropdown-item {{#if active.general}}active-item red darken-4{{/if}}" href="/forums/general">General</a>
+            <a class="dropdown-item {{#if active.off_topic}}active-item red darken-4{{/if}}" href="/forums/off_topic">Off Topic</a>
           </div>
       {{#if isAdmin}}
       <a class="nav-link {{#if active.admin}}active red darken-4{{/if}}" href="/post_blog">Admin</a>

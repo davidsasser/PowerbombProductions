@@ -37,22 +37,22 @@ body {
   line-height: 36px;
   border-radius: 4px; }
 
-.nav-link[aria-expanded="true"] {
-  background-color: #ddd;
-  color: black !important; }
+.active-item:hover {
+  background-color: #b71c1c !important;
+  color: white; }
 
 .dropdown-item {
   text-align: left !important; }
 
 .dropdown-item:hover {
-  background-color: #f1f1f1 !important; }
+  background-color: #f1f1f1; }
 
 .dropdown-menu {
-  background-color: #ddd;
+  background-color: black;
   border-radius: 4px; }
 
 .dropdown-item {
-  color: black; }
+  color: white; }
 
 .header a.logo {
   font-size: 25px;
@@ -709,6 +709,16 @@ h1 {
         line-height: 16px;
         pointer-events: none;
         word-break: normal; }
+
+.topic-type-select {
+  margin-bottom: 20px;
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold; }
 
 .fa-rotate-45 {
   -webkit-transform: rotate(45deg);

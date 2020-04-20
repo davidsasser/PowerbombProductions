@@ -1,12 +1,13 @@
 {{> header }}
 <div class="page-title">
-    <h1>WWE</h1>
+    <h1>{{topic_title}}</h1>
 </div>
 <section class="blog-container">
     <div class="blog-row">
         <main class="blog-col-main">
             <div class="add-post-container">
-                <input class="add-post-input" placeholder="Create Post" type="text">
+                <input id="forum-text-input" class="add-post-input" placeholder="Create Post" type="text">
+                <input value="{{topic_type}}" type="hidden" name="forum-input-val">
             </div>
             <hr>
                 <div class="forum-thread-container">

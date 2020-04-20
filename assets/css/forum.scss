@@ -161,6 +161,11 @@
     }
 }
 
+.topic-type-select {
+    margin-bottom: 20px;
+    @include round-field(gray, white);
+}
+
 .fa-rotate-45 {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
