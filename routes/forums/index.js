@@ -153,9 +153,28 @@ forums.get("/trending", (req,res) => {
     res.render('forum', {active: { forum: true, trending: true }, topics: topics, pinned: pinned, topic_type: "Trending"});
 });
 
-forums.get("/post_forum", (req,res) => {
+forums.get("/post_forum", auth.authenticationMiddleware(), (req,res) => {
     var topic_type = req.query.topic_type;
     res.render('post_forum', {topic_type: topic_type})
+});
+
+forums.post("/post_forum", auth.authenticationMiddleware(), (req,res) => {
+    var topic_type = req.body.topic_type;
+    var content = req.body.content;
+    var user_id = req.user.user_id;
+
+    var today = new Date();
+	var created = today.toISOString().split('.')[0];
+
+	db.query('INSERT INTO topics(topic_type, subject, created_on, user_id) VALUES ($1, $2, $3, $4)', [topic_type, content, created, user_id], (err, results, fields) => {
+		if(err) { 
+            console.log(err);
+            res.render('404') 
+        }
+        else {
+    		res.redirect(`/forums/${topic_type}`);
+        }
+    });
 });
 
 forums.post("/remove_topic/:topic_type/:id", auth.authenticationMiddleware(), (req, res) => {

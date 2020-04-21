@@ -1,33 +1,44 @@
 {{> header }}
-<div class="blog-post-container">
-  <form action="/add_post" enctype="multipart/form-data" method="POST">
-  <select id="forum-topic-select" class="topic-type-select">
-    <option value="wwe">WWE</option>
-    <option value="aew">AEW</option>
-    <option value="njpw">NJPW</option>
-    <option value="general">General</option>
-    <option value="off_topic">Off Topic</option>
-    </select>
-    <div class="blog-title-wrapper">
-      <input class="blog-title-entry" type="text" name="title" placeholder="Enter Title"><br>
+
+
+<section class="blog-container">
+    <div class="blog-row">
+        <main class="forum-col-main">
+            <div class="forum-post-container">
+                <form action="/forums/post_forum" enctype="multipart/form-data" method="POST">
+                <select name="topic_type" id="forum-topic-select" class="topic-type-select">
+                    <option value="wwe">WWE</option>
+                    <option value="aew">AEW</option>
+                    <option value="njpw">NJPW</option>
+                    <option value="general">General</option>
+                    <option value="off_topic">Off Topic</option>
+                    </select>
+                    <div class="blog-title-wrapper">
+                    <textarea class="forum-textarea" name="content"></textarea>
+                    </div>
+                    <div class="forum-submit">
+                    <input type="submit" value="Submit">
+                    </div>
+                </form>
+                </div>
+        </main>
+        <aside class="blog-col-aside">
+            <div class="blog-sidebar">
+                <div class="sidebar-promo">
+                    <a class="promo-link">
+                        <img class="promo-image" src="/images/promo-logo-black.jpg">
+                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
+                    </a>
+                </div>
+                <div class="sidebar-promo">
+                    <a class="promo-link">
+                        <img class="promo-image" src="/images/promo-logo-black.jpg">
+                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
     </div>
-    <textarea id="editor" name="content">
-    </textarea>
-                <script>
-                  ClassicEditor
-                      .create( document.querySelector( '#editor' ) )
-                      .catch( error => {
-                          console.error( error );
-                      } );
-              </script>
-    <div class="blog-image-entry">
-      <button id="uploadImage" class="btn-upload">Upload an Image</button>
-      <label id="fileNameLabel" for="uploadImage"></label>
-      <input id="imageFile" type="file" name="photo" accept="image/*"/>
-    </div>
-    <div class="blog-submit">
-      <input type="submit" value="Submit">
-    </div>
-  </form>
-</div>
+</section>
+
 {{> footer}}

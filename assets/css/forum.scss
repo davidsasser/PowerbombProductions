@@ -194,3 +194,42 @@
         background-color: #ccc;
     }
 }
+
+@media (min-width: 75rem) {
+    .forum-col-main {
+        flex-basis: 70.83333%;
+        max-width: 70.83333%;
+        padding-right: .9375rem;
+        padding-left: .9375rem;
+    }
+}
+
+.forum-col-main {
+    background-color: white;
+    border-radius: 4px;
+}
+
+.forum-post-container {
+    margin: 5%;
+}
+
+.forum-textarea {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+    border: 2px solid gray;
+    color: gray;
+    border-radius: 8px
+}
+
+.forum-submit {
+    display: flow-root;
+
+    input {
+        @include round-field(black, $button-color);
+        float: right;
+    }
+    input:hover {
+        cursor: pointer;
+    }
+}

@@ -87,6 +87,7 @@ blogs.get("/post_blog", auth.authenticationMiddleware(), (req,res) => {
 blogs.post("/add_post", auth.authenticationMiddleware(), (req, res) => {
 	var content = req.body.content;
 	var title = req.body.title;
+	var user_id = req.user.user_id;
 	if(req.files) {
 		var photo = req.files.photo;
 		var ext = photo.name.split('.')[1];
@@ -95,7 +96,7 @@ blogs.post("/add_post", auth.authenticationMiddleware(), (req, res) => {
 	var today = new Date();
 	var created = today.toISOString().split('.')[0];
 
-	db.query('INSERT INTO posts(title, content, user_id, created_on) VALUES ($1, $2, $3, $4) RETURNING post_id', [title, content, 1, created], (err, results, fields) => {
+	db.query('INSERT INTO posts(title, content, user_id, created_on) VALUES ($1, $2, $3, $4) RETURNING post_id', [title, content, user_id, created], (err, results, fields) => {
 		if(err) { done(err) }
 
 		var post_id = results.rows[0].post_id;
