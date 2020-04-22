@@ -122,6 +122,7 @@ h1 {
     width: 100%;
     cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
 }
 
 .card-btn:hover {
@@ -167,6 +168,7 @@ h1 {
 .card-content {
     padding: 1rem;
     border-top: 1px solid black;
+    height: 100%;
 }
 
 .card-title {
@@ -184,4 +186,5 @@ h1 {
     line-height: 1.5;
     margin-bottom: 1.25rem;    
     font-weight: 400;
+    margin-top: 10px;
 }

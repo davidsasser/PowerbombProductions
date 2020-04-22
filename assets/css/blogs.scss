@@ -6,6 +6,12 @@
     margin-top: 40px;
 }
 
+.main-table-div { 
+    height: 100%; 
+    width:100%; 
+    border-collapse: collapse; 
+} 
+
 .blog-row {
     display: flex;
     flex: 0 1 auto;

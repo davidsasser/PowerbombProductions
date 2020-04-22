@@ -153,6 +153,26 @@ forums.get("/trending", (req,res) => {
     res.render('forum', {active: { forum: true, trending: true }, topics: topics, pinned: pinned, topic_type: "Trending"});
 });
 
+forums.get("/wwe/:id", (req,res) => {
+
+});
+
+forums.get("/aew/:id", (req,res) => {
+
+});
+
+forums.get("/njpw/:id", (req,res) => {
+
+});
+
+forums.get("/general/:id", (req,res) => {
+
+});
+
+forums.get("/off_topic/:id", (req,res) => {
+
+});
+
 forums.get("/post_forum", auth.authenticationMiddleware(), (req,res) => {
     var topic_type = req.query.topic_type;
     res.render('post_forum', {topic_type: topic_type})

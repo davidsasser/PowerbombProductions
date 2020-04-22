@@ -7,9 +7,17 @@
       <div class="card">
         <div class="card-image"><img src="{{this.photo}}"></div>
         <div class="card-content">
-          <h2 class="card-title">{{this.title}}</h2>
-          <p class="card-text">{{this.content}}</p>
-          <a class="card-btn" href="/blogs/{{this.post_id}}">Read More</a>
+          <table class="main-table-div"> 
+              <tr> 
+                  <td valign="top"><h2 class="card-title">{{this.title}}</h2></td> 
+              </tr>
+              <tr>
+                <td><p class="card-text">{{this.content}}</p></td>
+              </tr>
+              <tr> 
+                  <td valign="bottom"><a class="card-btn" href="/blogs/{{this.post_id}}">Read More</a></td> 
+              </tr> 
+          </table> 
         </div>
       </div>
     </li>

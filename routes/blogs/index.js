@@ -62,7 +62,7 @@ blogs.get("/blogs/:id",function(req,res){
 		var ext = results.rows[0].extension;
 		var photo = '/images/';
 		if (imgPos == null) {
-			photo =	photo + 'WWE.png'
+			photo =	photo + 'logo-black.png'
 		}
 		else {
 			photo = photo + post_id + '_' + imgPos + '.' + ext;

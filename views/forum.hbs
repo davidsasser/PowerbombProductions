@@ -54,7 +54,7 @@
                 {{#if topics}}
                     {{#each topics}}
                     <div>
-                        <div class="forum-thread-post">
+                        <div class="forum-thread-post" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
                             <div class="forum-meta">
                                 <div class="meta-container">
                                     <div class="num-of-replies">{{this.replies}}</div>
