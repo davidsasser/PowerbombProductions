@@ -40,7 +40,7 @@ blogs.get("/blogs",function(req,res){
 	});
 });
 
-blogs.get("/blogs/:id",function(req,res){
+blogs.get("/blogs/:id", function(req,res){
 	var post_id = req.params.id;
 	console.log(post_id)
 	db.query('SELECT p.post_id as post_id, title, content, username, p.created_on as created_on, img_id, img_position, extension FROM posts p LEFT JOIN photo_in_post pp ON p.post_id = pp.post_id LEFT JOIN user_account u ON p.user_id = u.user_id WHERE p.post_id=$1', [post_id], (err, results, done) => {
@@ -80,11 +80,11 @@ blogs.get("/blogs/:id",function(req,res){
 	});
 });
 
-blogs.get("/post_blog", auth.authenticationMiddleware(), (req,res) => {
+blogs.get("/post_blog", auth.authenticationAdminMiddleware(), (req,res) => {
 	res.render('post_blog', {active: { admin: true }});
 });
 
-blogs.post("/add_post", auth.authenticationMiddleware(), (req, res) => {
+blogs.post("/add_post", auth.authenticationAdminMiddleware(), (req, res) => {
 	var content = req.body.content;
 	var title = req.body.title;
 	var user_id = req.user.user_id;

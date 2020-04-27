@@ -14,7 +14,7 @@
                 {{#if pinned}}
                     {{#each pinned}}
                     <div>
-                        <div class="forum-thread-post pinned">
+                        <div class="forum-thread-post pinned" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
                             <div class="forum-meta">
                                 <div class="meta-container">
                                     <div class="num-of-replies">{{this.replies}}</div>

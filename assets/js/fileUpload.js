@@ -27,8 +27,10 @@ $(document).ready(function() {
 
 $(document).ready(function(){
     $("div.forum-thread-post").click(function () {
-        var topic_id = $(this).attr("data-id");
-        var topic_type = $(this).attr("data-type");
-        window.location.href = `/forums/${topic_type}/${topic_id}`
+        if(event.target.className != "material-icons" && event.target != "javascript:{}") {
+            var topic_id = $(this).attr("data-id");
+            var topic_type = $(this).attr("data-type");
+            window.location.href = `/forums/${topic_type}/${topic_id}`
+        }
     });
 });
