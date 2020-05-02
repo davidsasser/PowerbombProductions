@@ -95,7 +95,7 @@ app.post("/request_add", (req,res) => {
 // authenticate the user
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    db.query('SELECT user_id, password, is_admin FROM user_account WHERE username = $1', [username], function(err, results, fields) {
+    db.query('SELECT user_id, password, is_admin, username, email FROM user_account WHERE username = $1', [username], function(err, results, fields) {
       if(err) {done(err)}
 
       if (results.length == 0) {
@@ -109,7 +109,7 @@ passport.use(new LocalStrategy(
             var last_login = today.toISOString().split('.')[0]+"Z";
             db.query('UPDATE user_account SET last_login = $1 WHERE username = $2', [last_login, username], function(err1, results1, fields1) {
               if(err1) {done(err1)}
-              return done(null, {user_id: results.rows[0].user_id, role: results.rows[0].is_admin});
+              return done(null, {user_id: results.rows[0].user_id, role: results.rows[0].is_admin, username: results.rows[0].username, email: results.rows[0].email});
             });
           }
           else {

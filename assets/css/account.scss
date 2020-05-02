@@ -1,0 +1,25 @@
+.my-account-container {
+    padding-top: 1%;
+    max-width: 1200px;
+	margin: 0 auto;
+    padding: 1% 2% 2% 2%;
+    background-color: white;
+    margin-top: 80px;
+
+    .my-account-header {
+        font-size: 40px;
+
+    }
+}
+
+.form-group {
+    margin: 15px 0;
+
+    .form-control {
+        width: 440px;
+        max-width: 100%;
+        margin-right: 5px;
+        background-color: #fafbfc;
+    }
+}
+

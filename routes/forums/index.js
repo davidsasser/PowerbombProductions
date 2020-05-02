@@ -9,7 +9,6 @@ forums.get("/wwe", (req,res) => {
     db.query("WITH r AS (SELECT topic_id, COUNT(reply_id) AS replies FROM replies GROUP BY topic_id) SELECT t.topic_id, t.subject, t.topic_type, t.created_on, t.pinned, r.replies, u.username FROM topics t LEFT JOIN r ON t.topic_id = r.topic_id LEFT JOIN user_account u ON t.user_id = u.user_id WHERE t.topic_type = $1", ["wwe"], (error, results) => {
         if(error) {console.log(error)}
 
-        console.log(req.user.role)
         var forumList = results.rows;
         for(var i = 0; i<forumList.length; i++) {
             if(results.rows[i].pinned == true) {
@@ -192,7 +191,7 @@ forums.get("/trending", (req,res) => {
 });
 
 forums.get("/wwe/:id", (req,res) => {
-
+    res.render("forum_view");
 });
 
 forums.get("/aew/:id", (req,res) => {

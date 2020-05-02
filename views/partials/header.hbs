@@ -9,6 +9,8 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6 text-right">
           {{#if isAuthenticated}}
+          <a class="header-link" href="/account">My Account</a>
+          <span class="divider">|</span>
           <a class="header-link" href="/logout">Logout</a>
           {{else}}
           <a class="header-link" href="/login">Sign In</a>

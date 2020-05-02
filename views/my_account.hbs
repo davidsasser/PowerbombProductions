@@ -1,0 +1,25 @@
+{{> header }}
+
+<div class="my-account-container">
+    <h1 class="my-account-header">My Account</h1>
+    <hr>
+    <dl class="form-group">
+        <dt><label for="user_profile_name">Username</label></dt>
+        <dd>
+            <input class="form-control" type="text" value="{{username}}" name="username" disabled>
+        </dd>
+    </dl>
+    <dl class="form-group">
+        <dt><label for="user_profile_name">Email</label></dt>
+        <dd>
+            <input class="form-control" type="text" value="{{email}}" name="email" disabled>
+        </dd>
+    </dl>
+    <br/>
+    <br/>
+    <div class="note">
+        You may not change your username or email at this time.
+    </div>
+</div>
+
+{{> footer}}
