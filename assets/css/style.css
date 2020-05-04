@@ -853,6 +853,9 @@ h1 {
 .forum-header {
   border-bottom: 1px solid #f1f1f1; }
 
+.tab {
+  border-top: 0px !important; }
+
 .my-account-container {
   padding-top: 1%;
   max-width: 1200px;

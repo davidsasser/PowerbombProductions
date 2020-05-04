@@ -191,7 +191,31 @@ forums.get("/trending", (req,res) => {
 });
 
 forums.get("/wwe/:id", (req,res) => {
-    res.render("forum_view");
+    db.query("WITH RECURSIVE MyTree AS (SELECT * FROM replies WHERE parent_id IS NULL UNION ALL SELECT m.* FROM replies AS m JOIN MyTree AS t ON m.parent_id = t.reply_id) SELECT r.message, r.reply_id, r.created_on, r.parent_id, u.username FROM MyTree r LEFT JOIN user_account u ON r.user_id = u.user_id WHERE r.topic_id = $1", [req.params.id], (error, results) => {
+        if(error) {
+            console.log(error)
+            res.render("404")
+        }
+        const roots = [];
+        const byId = new Map();
+        
+        var commentList = results.rows;
+        for(const reply of commentList) {
+            byId.set(reply.reply_id, reply);
+        }
+
+        for(const reply of commentList) {
+            const {parent_id} = reply;
+            if(parent_id) {
+                const parent = byId.get(parent_id);
+                (parent.children || (parent.children = [])).push(reply);
+            } else {
+                roots.push(reply);
+            }
+        }
+        var commentHTML = createCommentHTML(roots);
+        res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML});
+    })
 });
 
 forums.get("/aew/:id", (req,res) => {
@@ -270,5 +294,17 @@ forums.post("/unpin_topic/:topic_type/:id", auth.authenticationAdminMiddleware()
         }
     });
 });
+
+function createCommentHTML(replies, depth = 0, HTML = "") {
+    var tab = "";
+    if(depth > 0) {
+        tab = " tab"
+    }
+    for(const reply of replies) {
+        console.log(" ".repeat(depth) + reply.message);
+        HTML = createCommentHTML(reply.children || [], depth + 1, HTML + `<section class="blog-meta-footer${tab}"><div class="byline"><span class="byline__authorname">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.username}</span><br/><span class="byline__timestamp">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.message}</span></div></section>`);
+    }
+    return HTML
+}
 
 module.exports = forums;
