@@ -286,6 +286,8 @@
     outline: none;
     padding: 0 16px;
     width: 100%;
+    height: 40px;
+    font-size: 25px;
 
     &:hover {
         border: 1px solid #0079d3;
@@ -315,4 +317,30 @@
 
 .tab {
     border-top: 0px !important;
+}
+@mixin round-field($border, $fill) {
+    border: 2px solid $border;
+    color: $border;
+    background-color: $fill;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.comment-submit {
+    margin-top: 1rem;
+    display: flow-root;
+
+    input {
+        border: 1px solid black;
+        color: black;
+        background-color: $button-color;
+        padding: 1px 10px;
+        border-radius: 4px;
+        font-size: 25px;
+        float: right;
+    }
+    input:hover {
+        cursor: pointer;
+    }
 }

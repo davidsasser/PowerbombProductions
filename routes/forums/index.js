@@ -214,7 +214,16 @@ forums.get("/wwe/:id", (req,res) => {
             }
         }
         var commentHTML = createCommentHTML(roots);
-        res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML});
+        db.query("SELECT t.subject, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+            if(error1) {
+                console.log(error1)
+                res.render("404")
+            }
+            var subject = results1.rows[0].subject;
+            var created_on = results1.rows[0].created_on;
+            var username = results1.rows[0].username;
+            res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML, topic: subject, topic_id: req.params.id, created: created_on, username: username, topic_type: "wwe"});
+        })
     })
 });
 
@@ -295,13 +304,30 @@ forums.post("/unpin_topic/:topic_type/:id", auth.authenticationAdminMiddleware()
     });
 });
 
+forums.post("/add_comment", auth.authenticationAdminMiddleware(), (req, res) => {
+    var topic_id = req.body.topic_id;
+    var topic_type = req.body.topic_type;
+    var comment = req.body.comment;
+    var today = new Date();
+    var created = today.toISOString().split('.')[0];
+    
+    db.query('INSERT INTO replies(message, created_on, parent_id, user_id, topic_id) VALUES ($1, $2, $3, $4, $5)', [comment, created, null, req.user.user_id, topic_id], (err, results, fields) => {
+		if(err) { 
+            console.log(err);
+            res.render('404') 
+        }
+        else {
+    		res.redirect(`/forums/${topic_type}/${topic_id}`);
+        }
+    });
+});
+
 function createCommentHTML(replies, depth = 0, HTML = "") {
     var tab = "";
     if(depth > 0) {
         tab = " tab"
     }
     for(const reply of replies) {
-        console.log(" ".repeat(depth) + reply.message);
         HTML = createCommentHTML(reply.children || [], depth + 1, HTML + `<section class="blog-meta-footer${tab}"><div class="byline"><span class="byline__authorname">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.username}</span><br/><span class="byline__timestamp">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.message}</span></div></section>`);
     }
     return HTML

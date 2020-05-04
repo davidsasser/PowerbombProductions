@@ -833,7 +833,9 @@ h1 {
   flex-grow: 1;
   outline: none;
   padding: 0 16px;
-  width: 100%; }
+  width: 100%;
+  height: 40px;
+  font-size: 25px; }
   .add-post-textarea:hover {
     border: 1px solid #0079d3;
     background-color: #ffffff; }
@@ -855,6 +857,20 @@ h1 {
 
 .tab {
   border-top: 0px !important; }
+
+.comment-submit {
+  margin-top: 1rem;
+  display: flow-root; }
+  .comment-submit input {
+    border: 1px solid black;
+    color: black;
+    background-color: #b71c1c;
+    padding: 1px 10px;
+    border-radius: 4px;
+    font-size: 25px;
+    float: right; }
+  .comment-submit input:hover {
+    cursor: pointer; }
 
 .my-account-container {
   padding-top: 1%;

@@ -5,18 +5,23 @@
         <article class="forum-article">
           <header class="forum-header">
             <div class="forum-view-meta">
-                <span class="forum-authorname">username</span>
+                <span class="forum-authorname">{{username}}</span>
                 &nbsp;
-              <span class="forum-timestamp">4 hours ago</span>
+              <span class="forum-timestamp">{{created}}</span>
             </div>
             <div>
-                <h1 class="blog-title">The title of the forum</h1>
+                <h1 class="blog-title">{{topic}}</h1>
             </div>
           </header>
           <section class="forum-add-comment-section">
-            <form>
+            <form method="POST" action="/forums/add_comment">
+                <input type="hidden"  name="topic_id" value="{{topic_id}}">
+                <input type="hidden"  name="topic_type" value="{{topic_type}}">
                 <div class="blog-image-container">
-                    <textarea type="text" name="reply" class="add-post-textarea" placeholder="Add a comment"></textarea>
+                    <textarea type="text" name="comment" class="add-post-textarea" placeholder="Add a comment"></textarea>
+                    <div class="comment-submit">
+                        <input type="submit" value="Submit">
+                    </div>
                 </div>
             </form>
           </section>
