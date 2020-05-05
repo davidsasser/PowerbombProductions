@@ -3,9 +3,9 @@
     <div class="top-line red darken-4">
       <div style="display:flex">
         <div class="header-social-icons">
-          <a href=""><i class="fab fa-facebook-square"></i></a>
-          <a href=""><i class="fab fa-twitter-square"></i></a>
-          <a href=""><i class="fab fa-instagram-square"></i></a>
+          <a href="https://www.facebook.com/PowerbombPROD/"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://twitter.com/PowerbombPROD"><i class="fab fa-twitter-square"></i></a>
+          <a href="https://www.instagram.com/powerbombprod/"><i class="fab fa-instagram-square"></i></a>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6 text-right">
           {{#if isAuthenticated}}
@@ -38,6 +38,7 @@
             <a class="dropdown-item {{#if active.njpw}}active-item red darken-4{{/if}}" href="/forums/njpw">NJPW</a>
             <a class="dropdown-item {{#if active.general}}active-item red darken-4{{/if}}" href="/forums/general">General</a>
             <a class="dropdown-item {{#if active.off_topic}}active-item red darken-4{{/if}}" href="/forums/off_topic">Off Topic</a>
+            <a class="dropdown-item {{#if active.trending}}active-item red darken-4{{/if}}" href="/forums/trending">Trending</a>
           </div>
       {{#if isAdmin}}
       <a class="nav-link {{#if active.admin}}active red darken-4{{/if}}" href="/post_blog">Admin</a>

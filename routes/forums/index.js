@@ -170,25 +170,36 @@ forums.get("/off_topic", (req,res) => {
 });
 
 forums.get("/trending", (req,res) => {
-    var topics = {};
-    var pinned = {};
-    pinned[1] = {
-        "replies": Math.floor(Math.random() * 90 + 10),
-        "user": "test-user",
-        "title": `This is title is for the pinned tweet.`,
-        "topic_id": Math.floor(Math.random() * 10 + 1),
-        "topic_type": "wwe"
-    }
-    for(var i = 1; i < 10; i++) {
-        topics[i] = {
-            "replies": Math.floor(Math.random() * 90 + 10),
-            "user": "test-user",
-            "title": `This is title # ${i}.`,
-            "topic_id": Math.floor(Math.random() * 10 + 1),
-            "topic_type": "wwe"
+    var topics = [];
+    var pinned = [];
+    db.query("WITH r AS (SELECT topic_id, COUNT(reply_id) AS replies FROM replies GROUP BY topic_id) SELECT t.topic_id, t.subject, t.topic_type, t.created_on, t.pinned, r.replies, u.username FROM topics t LEFT JOIN r ON t.topic_id = r.topic_id LEFT JOIN user_account u ON t.user_id = u.user_id WHERE t.created_on > current_date - interval '7 days' ORDER BY r.replies DESC NULLS LAST;", (error, results) => {
+        if(error) {console.log(error)}
+
+        var forumList = results.rows;
+        for(var i = 0; i<forumList.length; i++) {
+            if(results.rows[i].pinned == true) {
+                var replies = (forumList[i].replies == null) ? 0 : forumList[i].replies;
+                pinned.push({
+                    "replies": replies,
+                    "user": forumList[i].username,
+                    "title": forumList[i].subject,
+                    "topic_id": forumList[i].topic_id,
+                    "topic_type": forumList[i].topic_type
+                })
+            }
+            else {
+                var replies = (forumList[i].replies == null) ? 0 : forumList[i].replies;
+                topics.push({
+                    "replies": replies,
+                    "user": forumList[i].username,
+                    "title": forumList[i].subject,
+                    "topic_id": forumList[i].topic_id,
+                    "topic_type": forumList[i].topic_type
+                })
+            }
         }
-    }
-    res.render('forum', {active: { forum: true, trending: true }, topics: topics, pinned: pinned, topic_type: "Trending"});
+        res.render('forum', {active: { forum: true, trending: true }, topics: topics, pinned: pinned, topic_title: "Trending"});
+    })
 });
 
 forums.get("/wwe/:id", (req,res) => {
@@ -216,33 +227,174 @@ forums.get("/wwe/:id", (req,res) => {
             }
         }
         var commentHTML = createCommentHTML(req.params.id, "wwe", roots);
-        db.query("SELECT t.subject, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+        db.query("SELECT t.subject, t.message, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
             if(error1) {
                 console.log(error1)
                 res.render("404")
             }
             var subject = results1.rows[0].subject;
+            var content = results1.rows[0].message;
             var created_on = df.formatDate(results1.rows[0].created_on);
             var username = results1.rows[0].username;
-            res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML, topic: subject, topic_id: req.params.id, created: created_on, username: username, topic_type: "wwe"});
+            res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML, topic: subject, content: content, topic_id: req.params.id, created: created_on, username: username, topic_type: "wwe"});
         })
     })
 });
 
 forums.get("/aew/:id", (req,res) => {
+    db.query("WITH RECURSIVE MyTree AS (SELECT * FROM replies WHERE parent_id IS NULL UNION ALL SELECT m.* FROM replies AS m JOIN MyTree AS t ON m.parent_id = t.reply_id) SELECT r.message, r.reply_id, r.created_on, r.parent_id, u.username FROM MyTree r LEFT JOIN user_account u ON r.user_id = u.user_id WHERE r.topic_id = $1", [req.params.id], (error, results) => {
+        if(error) {
+            console.log(error)
+            res.render("404")
+        }
+        const roots = [];
+        const byId = new Map();
+        
+        var commentList = results.rows;
+        for(const reply of commentList) {
+            reply.created_on = df.formatDate(reply.created_on);
+            byId.set(reply.reply_id, reply);
+        }
 
+        for(const reply of commentList) {
+            const {parent_id} = reply;
+            if(parent_id) {
+                const parent = byId.get(parent_id);
+                (parent.children || (parent.children = [])).push(reply);
+            } else {
+                roots.push(reply);
+            }
+        }
+        var commentHTML = createCommentHTML(req.params.id, "aew", roots);
+        db.query("SELECT t.subject, t.message, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+            if(error1) {
+                console.log(error1)
+                res.render("404")
+            }
+            var subject = results1.rows[0].subject;
+            var content = results1.rows[0].message;
+            var created_on = df.formatDate(results1.rows[0].created_on);
+            var username = results1.rows[0].username;
+            res.render("forum_view", {active: { forum: true, aew: true }, comments: commentHTML, topic: subject, content: content, topic_id: req.params.id, created: created_on, username: username, topic_type: "aew"});
+        })
+    })
 });
 
 forums.get("/njpw/:id", (req,res) => {
+    db.query("WITH RECURSIVE MyTree AS (SELECT * FROM replies WHERE parent_id IS NULL UNION ALL SELECT m.* FROM replies AS m JOIN MyTree AS t ON m.parent_id = t.reply_id) SELECT r.message, r.reply_id, r.created_on, r.parent_id, u.username FROM MyTree r LEFT JOIN user_account u ON r.user_id = u.user_id WHERE r.topic_id = $1", [req.params.id], (error, results) => {
+        if(error) {
+            console.log(error)
+            res.render("404")
+        }
+        const roots = [];
+        const byId = new Map();
+        
+        var commentList = results.rows;
+        for(const reply of commentList) {
+            reply.created_on = df.formatDate(reply.created_on);
+            byId.set(reply.reply_id, reply);
+        }
 
+        for(const reply of commentList) {
+            const {parent_id} = reply;
+            if(parent_id) {
+                const parent = byId.get(parent_id);
+                (parent.children || (parent.children = [])).push(reply);
+            } else {
+                roots.push(reply);
+            }
+        }
+        var commentHTML = createCommentHTML(req.params.id, "njpw", roots);
+        db.query("SELECT t.subject, t.message, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+            if(error1) {
+                console.log(error1)
+                res.render("404")
+            }
+            var subject = results1.rows[0].subject;
+            var content = results1.rows[0].message;
+            var created_on = df.formatDate(results1.rows[0].created_on);
+            var username = results1.rows[0].username;
+            res.render("forum_view", {active: { forum: true, njpw: true }, comments: commentHTML, topic: subject, content: content, topic_id: req.params.id, created: created_on, username: username, topic_type: "njpw"});
+        })
+    })
 });
 
 forums.get("/general/:id", (req,res) => {
+    db.query("WITH RECURSIVE MyTree AS (SELECT * FROM replies WHERE parent_id IS NULL UNION ALL SELECT m.* FROM replies AS m JOIN MyTree AS t ON m.parent_id = t.reply_id) SELECT r.message, r.reply_id, r.created_on, r.parent_id, u.username FROM MyTree r LEFT JOIN user_account u ON r.user_id = u.user_id WHERE r.topic_id = $1", [req.params.id], (error, results) => {
+        if(error) {
+            console.log(error)
+            res.render("404")
+        }
+        const roots = [];
+        const byId = new Map();
+        
+        var commentList = results.rows;
+        for(const reply of commentList) {
+            reply.created_on = df.formatDate(reply.created_on);
+            byId.set(reply.reply_id, reply);
+        }
 
+        for(const reply of commentList) {
+            const {parent_id} = reply;
+            if(parent_id) {
+                const parent = byId.get(parent_id);
+                (parent.children || (parent.children = [])).push(reply);
+            } else {
+                roots.push(reply);
+            }
+        }
+        var commentHTML = createCommentHTML(req.params.id, "general", roots);
+        db.query("SELECT t.subject, t.message, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+            if(error1) {
+                console.log(error1)
+                res.render("404")
+            }
+            var subject = results1.rows[0].subject;
+            var content = results1.rows[0].message;
+            var created_on = df.formatDate(results1.rows[0].created_on);
+            var username = results1.rows[0].username;
+            res.render("forum_view", {active: { forum: true, general: true }, comments: commentHTML, topic: subject, content: content, topic_id: req.params.id, created: created_on, username: username, topic_type: "general"});
+        })
+    })
 });
 
 forums.get("/off_topic/:id", (req,res) => {
+    db.query("WITH RECURSIVE MyTree AS (SELECT * FROM replies WHERE parent_id IS NULL UNION ALL SELECT m.* FROM replies AS m JOIN MyTree AS t ON m.parent_id = t.reply_id) SELECT r.message, r.reply_id, r.created_on, r.parent_id, u.username FROM MyTree r LEFT JOIN user_account u ON r.user_id = u.user_id WHERE r.topic_id = $1", [req.params.id], (error, results) => {
+        if(error) {
+            console.log(error)
+            res.render("404")
+        }
+        const roots = [];
+        const byId = new Map();
+        
+        var commentList = results.rows;
+        for(const reply of commentList) {
+            reply.created_on = df.formatDate(reply.created_on);
+            byId.set(reply.reply_id, reply);
+        }
 
+        for(const reply of commentList) {
+            const {parent_id} = reply;
+            if(parent_id) {
+                const parent = byId.get(parent_id);
+                (parent.children || (parent.children = [])).push(reply);
+            } else {
+                roots.push(reply);
+            }
+        }
+        var commentHTML = createCommentHTML(req.params.id, "off_topic", roots);
+        db.query("SELECT t.subject, t.message, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
+            if(error1) {
+                console.log(error1)
+                res.render("404")
+            }
+            var subject = results1.rows[0].subject;
+            var content = results1.rows[0].message;
+            var created_on = df.formatDate(results1.rows[0].created_on);
+            var username = results1.rows[0].username;
+            res.render("forum_view", {active: { forum: true, off_topic: true }, comments: commentHTML, topic: subject, content: content, topic_id: req.params.id, created: created_on, username: username, topic_type: "off_topic"});
+        })
+    })
 });
 
 forums.get("/post_forum", auth.authenticationMiddleware(), (req,res) => {
@@ -252,13 +404,14 @@ forums.get("/post_forum", auth.authenticationMiddleware(), (req,res) => {
 
 forums.post("/post_forum", auth.authenticationMiddleware(), (req,res) => {
     var topic_type = req.body.topic_type;
+    var subject = req.body.subject;
     var content = req.body.content;
     var user_id = req.user.user_id;
 
     var today = new Date();
 	var created = today.toISOString().split('.')[0];
 
-	db.query('INSERT INTO topics(topic_type, subject, created_on, user_id) VALUES ($1, $2, $3, $4)', [topic_type, content, created, user_id], (err, results, fields) => {
+	db.query('INSERT INTO topics(topic_type, subject, message, created_on, user_id) VALUES ($1, $2, $3, $4, $5)', [topic_type, subject, content, created, user_id], (err, results, fields) => {
 		if(err) { 
             console.log(err);
             res.render('404') 

@@ -163,7 +163,13 @@
 
 .topic-type-select {
     margin-bottom: 20px;
-    @include round-field(gray, white);
+    border: 2px solid grey;
+    color: grey;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .fa-rotate-45 {
@@ -219,7 +225,21 @@
     margin-bottom: 20px;
     border: 2px solid gray;
     color: gray;
-    border-radius: 8px
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.forum-subject-text-input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 2px solid gray;
+    color: gray;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+.forum-message-text {
+    padding: 0 1.5rem;
 }
 
 .forum-submit {
@@ -300,6 +320,7 @@
     padding-right: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    border-bottom: 1px solid black;
 }
 
 .forum-view-meta {
@@ -317,14 +338,6 @@
 
 .tab {
     border-top: 0px !important;
-}
-@mixin round-field($border, $fill) {
-    border: 2px solid $border;
-    color: $border;
-    background-color: $fill;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 20px;
 }
 
 .comment-submit {
@@ -373,6 +386,10 @@
 
 .comment-footer section:nth-child(odd) {
     background-color: #eeeeee;
+}
+
+.byline-text {
+    font-size: .9rem;
 }
 
 .comment-byline {
