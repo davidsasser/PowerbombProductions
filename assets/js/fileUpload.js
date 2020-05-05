@@ -34,3 +34,7 @@ $(document).ready(function(){
         }
     });
 });
+
+function showTextarea(id) {
+    $(`#comment-${id}`).show();
+}

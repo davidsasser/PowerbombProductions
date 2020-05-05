@@ -872,6 +872,70 @@ h1 {
   .comment-submit input:hover {
     cursor: pointer; }
 
+.comment-options {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #878a8c;
+  margin: 4px 0 0px;
+  padding-left: 0.5rem; }
+  .comment-options button {
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 12px;
+    padding: 4px 0px;
+    transition: color .1s;
+    white-space: nowrap;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer; }
+
+.comment-footer section:nth-child(even) {
+  background-color: white; }
+
+.comment-footer section:nth-child(odd) {
+  background-color: #eeeeee; }
+
+.comment-byline {
+  padding-left: 0.5rem;
+  font-size: .875rem;
+  width: 50%; }
+  .comment-byline .forum-timestamp {
+    color: #848484;
+    padding-left: 1rem;
+    font-size: .75rem; }
+  .comment-byline .comment-text {
+    font-size: 1.25rem; }
+  .comment-byline .byline__authorname {
+    font-size: .75rem; }
+
+.comment-section-border {
+  border-left: 2px solid black; }
+
+.report-form {
+  display: inline-block; }
+
+.reply-form {
+  display: none;
+  max-width: 70%;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem; }
+
+.reply-submit {
+  margin-top: 0.5rem;
+  display: flow-root; }
+  .reply-submit input {
+    border: 1px solid black;
+    color: black;
+    background-color: #b71c1c;
+    padding: 1px 8px;
+    border-radius: 2px;
+    font-size: 20px;
+    float: right; }
+  .reply-submit input:hover {
+    cursor: pointer; }
+
 .my-account-container {
   padding-top: 1%;
   max-width: 1200px;

@@ -1,6 +1,7 @@
 const forums = require('express').Router();
 const db = require('../../helpers/db.js');
 const auth = require('../../helpers/auth');
+const df = require('../../helpers/dateFormat');
 const fs = require('fs');
 
 forums.get("/wwe", (req,res) => {
@@ -201,6 +202,7 @@ forums.get("/wwe/:id", (req,res) => {
         
         var commentList = results.rows;
         for(const reply of commentList) {
+            reply.created_on = df.formatDate(reply.created_on);
             byId.set(reply.reply_id, reply);
         }
 
@@ -213,14 +215,14 @@ forums.get("/wwe/:id", (req,res) => {
                 roots.push(reply);
             }
         }
-        var commentHTML = createCommentHTML(roots);
+        var commentHTML = createCommentHTML(req.params.id, "wwe", roots);
         db.query("SELECT t.subject, t.created_on, u.username FROM topics t LEFT JOIN user_account u ON t.user_id = u.user_id WHERE topic_id = $1", [req.params.id], (error1, results1) => {
             if(error1) {
                 console.log(error1)
                 res.render("404")
             }
             var subject = results1.rows[0].subject;
-            var created_on = results1.rows[0].created_on;
+            var created_on = df.formatDate(results1.rows[0].created_on);
             var username = results1.rows[0].username;
             res.render("forum_view", {active: { forum: true, wwe: true }, comments: commentHTML, topic: subject, topic_id: req.params.id, created: created_on, username: username, topic_type: "wwe"});
         })
@@ -322,13 +324,55 @@ forums.post("/add_comment", auth.authenticationAdminMiddleware(), (req, res) => 
     });
 });
 
-function createCommentHTML(replies, depth = 0, HTML = "") {
+forums.post("/add_reply", auth.authenticationAdminMiddleware(), (req, res) => {
+    var topic_id = req.body.topic_id;
+    var parent_id = req.body.comment_id;
+    var topic_type = req.body.topic_type;
+    var comment = req.body.comment;
+    var today = new Date();
+    var created = today.toISOString().split('.')[0];
+    
+    db.query('INSERT INTO replies(message, created_on, parent_id, user_id, topic_id) VALUES ($1, $2, $3, $4, $5)', [comment, created, parent_id, req.user.user_id, topic_id], (err, results, fields) => {
+		if(err) { 
+            console.log(err);
+            res.render('404') 
+        }
+        else {
+    		res.redirect(`/forums/${topic_type}/${topic_id}`);
+        }
+    });
+});
+
+function createCommentHTML(topic_id, topic_type, replies, depth = 0, HTML = "") {
     var tab = "";
     if(depth > 0) {
         tab = " tab"
     }
     for(const reply of replies) {
-        HTML = createCommentHTML(reply.children || [], depth + 1, HTML + `<section class="blog-meta-footer${tab}"><div class="byline"><span class="byline__authorname">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.username}</span><br/><span class="byline__timestamp">${"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(depth) + reply.message}</span></div></section>`);
+        HTML = createCommentHTML(topic_id, topic_type, reply.children || [], depth + 1, HTML  
+            + `<section class="blog-meta-footer${tab}">`
+            + `<div class="comment-section-border" style="margin-left:${(depth+1)*1.5}rem;">`
+            + `<div class="comment-byline">`
+            + `<span class="byline__authorname">${reply.username}</span>`
+            + `<span class="forum-timestamp">${reply.created_on}</span>`
+            + `<br/>`
+            + `<span class="comment-text">${reply.message}</span>`
+            + `</div>`
+            + `<div class="comment-options">`
+            + `<button onclick="showTextarea('${reply.reply_id}')"><i class="fas fa-comment-alt"></i> Reply</button>`
+            + `<form class="report-form">`
+            + `<button>Report</button>`
+            + `</form>`
+            + `</div>`
+            + `<form id="comment-${reply.reply_id}" class="reply-form" method="POST" action="/forums/add_reply">`
+            + `<input type="hidden"  name="comment_id" value="${reply.reply_id}">`
+            + `<input type="hidden"  name="topic_type" value="${topic_type}">`
+            + `<input type="hidden"  name="topic_id" value="${topic_id}">`
+            + `<div class="blog-image-container">`
+            + `<textarea type="text" name="comment" class="add-post-textarea" placeholder="Add a comment"></textarea>`
+            + `<div class="reply-submit">`
+            + `<input type="submit" value="Submit">`
+            + `</div></div></form></div></section>`);
     }
     return HTML
 }

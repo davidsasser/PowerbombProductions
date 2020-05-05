@@ -1,6 +1,7 @@
 const blogs = require('express').Router();
-const db = require('../../helpers/db.js');
+const db = require('../../helpers/db');
 const auth = require('../../helpers/auth');
+const df = require('../../helpers/dateFormat');
 const fs = require('fs');
 
 blogs.get("/blogs",function(req,res){
@@ -46,14 +47,7 @@ blogs.get("/blogs/:id", function(req,res){
 	db.query('SELECT p.post_id as post_id, title, content, username, p.created_on as created_on, img_id, img_position, extension FROM posts p LEFT JOIN photo_in_post pp ON p.post_id = pp.post_id LEFT JOIN user_account u ON p.user_id = u.user_id WHERE p.post_id=$1', [post_id], (err, results, done) => {
 		if(err) {done(err)}
         var created_on = results.rows[0].created_on;
-        var d = new Date(created_on + "UTC")
-        var formattedDate = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-        var am_pm = (d.getHours() > 11) ? "PM" : "AM"
-        var hours = (d.getHours() < 1) ? "12" : d.getHours();
-        hours = (hours > 12 ) ? hours - 12 : hours;
-        var minutes = (d.getMinutes() < 10) ? "0" + d.getMinutes() : d.getMinutes();
-        var formattedTime = hours + ":" + minutes + " " + am_pm;
-        created = formattedDate + " " + formattedTime;
+        var created = df.formatDate(created_on);
 		var title = results.rows[0].title;
 		var content = results.rows[0].content;
         var username= results.rows[0].username;
