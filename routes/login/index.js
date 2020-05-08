@@ -124,20 +124,12 @@ login.post("/register", function(req, res){
 		// var hash = bcrypt.hashSync(req.body.psw, 10);
 		var password = req.body.password;
 		var email = req.body.email;
-		var admin = req.body.admin;
 		var today = new Date();
 		var created = today.toISOString().split('.')[0];
 		var login = today.toISOString().split('.')[0];
 
-		if(admin == null) {
-			admin = false;
-		}
-		else {
-			admin = true;
-		}
-
 		bcrypt.hash(password, saltRounds, (err, hash) => {
-			db.query('INSERT INTO user_account (username, password, email, created_on, last_login, is_admin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING user_id', [username, hash, email, created, login, admin], (error, results) => {
+			db.query('INSERT INTO user_account (username, password, email, created_on, last_login) VALUES ($1, $2, $3, $4, $5) RETURNING user_id', [username, hash, email, created, login], (error, results) => {
 				if (error) {
 					console.log("error ocurred", error);
 					res.send({
