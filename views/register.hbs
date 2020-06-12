@@ -5,26 +5,26 @@
       {{#if errors}}
         {{#each errors}}
           <div class="alert alert-danger">
-              {{this.msg}}
+            {{this.msg}}
           </div>
         {{/each}}
       {{/if}}
       <h1>Please fill in this form to create an account.</h1>
       <hr>
-      <div class="form-group">
-    <label>Email address</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter Email">
-    <label>Username</label>
-    <input type="text" class="form-control" name="username" placeholder="Enter Username">
-    <label>Password</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
-    <label>Re-enter Password</label>
-    <input type="password" class="form-control" name="passMatch" placeholder="Password">
-    </div>
-  </div>
-  <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="register-form">
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter Email">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter Username">
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password">
+          <label>Re-enter Password</label>
+          <input type="password" class="form-control" name="passMatch" placeholder="Password">
+        </div>
+        <button type="submit" class="register-btn btn btn-primary">Submit</button>
+      </div>
     </div>
   </form>
-  </div>
+</div>
 {{> footer}}

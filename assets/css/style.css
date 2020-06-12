@@ -252,6 +252,14 @@ div.container {
 .form-control:not(:last-child) {
   margin-bottom: 10px; }
 
+form.login,
+div.register-form {
+  max-width: 40%;
+  margin: auto; }
+
+button.register-btn {
+  margin-left: 0; }
+
 @media (max-width: 576px) {
   .xs {
     color: red;
