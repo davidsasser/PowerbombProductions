@@ -1,29 +1,43 @@
 {{> header }}
 <div class="main">
-  <ul class="cards">
-    {{#if posts}}
-        {{#each posts}}
-    <li class="cards-item">
-      <div class="card">
-        <div class="card-image"><img src="{{this.photo}}"></div>
-        <div class="card-content">
-          <table class="main-table-div"> 
-              <tr> 
-                  <td valign="top"><h2 class="card-title">{{this.title}}</h2></td> 
-              </tr>
-              <tr>
-                <td><p class="card-text">{{this.content}}</p></td>
-              </tr>
-              <tr> 
-                  <td valign="bottom"><a class="card-btn" href="/blogs/{{this.post_id}}">Read More</a></td> 
-              </tr> 
-          </table> 
-        </div>
-      </div>
-    </li>
+  <ul class="pagination pagination-lg">
+    {{{pages}}}
+  </ul>
+  {{#if sects}}
+    {{#each sects}}
+      <ul id="{{this.section}}" class="cards" data-shown="false" style="display:none;">
+        {{#if this.posts}}
+          {{#each this.posts}}
+            <li class="cards-item">
+              <div class="card">
+                <div class="card-image"><img src="{{this.photo}}"></div>
+                <div class="card-content">
+                  <table class="main-table-div">
+                    <tr>
+                      <td valign="top">
+                        <h2 class="card-title">{{this.title}}</h2>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="card-text">{{this.content}}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="bottom"><a class="card-btn" href="/blogs/{{this.post_id}}">Read More</a></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </li>
+          {{/each}}
+        {{/if}}
+      </ul>
     {{/each}}
-    {{/if}}
-   
+  {{/if}}
+
+  <ul class="pagination pagination-lg">
+    {{{pages}}}
   </ul>
 </div>
 {{> footer}}

@@ -1,54 +1,55 @@
 {{> header }}
 <section class="forum-container">
-    <div class="forum-row">
-      <main class="forum-view-col-main">
-        <article class="forum-article">
-          <header class="forum-header">
-            <div class="forum-view-meta">
-                <span class="forum-authorname">{{username}}</span>
-                &nbsp;
-              <span class="forum-timestamp">{{created}}</span>
-            </div>
-            <div>
-                <h1 class="blog-title">{{topic}}</h1>
-            </div>
-            <div class="forum-message-text">
-                <p>{{content}}</p>
-            </div>
-          </header>
-          <section class="forum-add-comment-section">
-            <form method="POST" action="/forums/add_comment">
-                <input type="hidden"  name="topic_id" value="{{topic_id}}">
-                <input type="hidden"  name="topic_type" value="{{topic_type}}">
-                <div class="blog-image-container">
-                    <textarea type="text" name="comment" class="add-post-textarea" placeholder="Add a comment"></textarea>
-                    <div class="comment-submit">
-                        <input type="submit" value="Submit">
-                    </div>
-                </div>
-            </form>
-          </section>
-          <section class="comment-footer">
-              {{{comments}}}
-          </section>
-          </article>
-      </main>
-      <aside class="forum-col-aside">
-        <div class="blog-sidebar">
-          <div class="sidebar-promo">
-            <a class="promo-link">
-              <img class="promo-image" src="/images/promo-logo-black.jpg">
-              <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
-            </a>
+  {{#if errors}}
+    {{#each errors}}
+      <div class="alert alert-danger">
+        {{this.msg}}
+      </div>
+    {{/each}}
+  {{/if}}
+  <div class="forum-row">
+    <main class="forum-view-col-main">
+      <article class="forum-article">
+        <header class="forum-header">
+          <div class="forum-view-meta">
+            <span class="forum-authorname">{{username}}</span>
+            &nbsp;
+            <span class="forum-timestamp">{{created}}</span>
           </div>
-          <div class="sidebar-promo">
-            <a class="promo-link">
-              <img class="promo-image" src="/images/promo-logo-black.jpg">
-              <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
-            </a>
+          <div>
+            <h1 class="blog-title">{{topic}}</h1>
           </div>
+          <div class="forum-message-text">
+            <p>{{content}}</p>
+          </div>
+        </header>
+        <section class="forum-add-comment-section">
+          <form method="POST" action="/forums/add_comment">
+            <input type="hidden" name="topic_id" value="{{topic_id}}">
+            <input type="hidden" name="topic_type" value="{{topic_type}}">
+            <div class="blog-image-container">
+              <textarea type="text" name="comment" class="add-post-textarea" placeholder="Add a comment"></textarea>
+              <div class="comment-submit">
+                <input type="submit" value="Submit">
+              </div>
+            </div>
+          </form>
+        </section>
+        <section class="comment-footer">
+          {{{comments}}}
+        </section>
+      </article>
+    </main>
+    <aside class="forum-col-aside">
+      <div class="blog-sidebar">
+        <div class="sidebar-promo">
+          <a class="promo-link" href="https://www.instagram.com/powerbombprod/">
+            <img class="promo-image" src="/images/promo-logo-black.jpg">
+            <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
+          </a>
         </div>
-      </aside>
-    </div>
+      </div>
+    </aside>
+  </div>
 </section>
 {{> footer}}

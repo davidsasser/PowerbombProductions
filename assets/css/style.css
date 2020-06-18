@@ -601,6 +601,23 @@ h1 {
   font-weight: 700;
   color: #222; }
 
+ul.pagination {
+  justify-content: center; }
+
+li.page-item {
+  border: 1px solid black;
+  border-radius: 2px; }
+
+li.page-item:not(:first-child) {
+  margin-left: 5px; }
+
+button.page-link {
+  margin-left: 0; }
+
+button.page-link.active {
+  background-color: #b71c1c !important;
+  color: white !important; }
+
 .page-title {
   width: 100%;
   max-width: 75rem;
@@ -642,7 +659,7 @@ h1 {
     background-color: #ffffff; }
 
 .forum-thread-container {
-  min-height: 800px;
+  min-height: 400px;
   width: 100%; }
   .forum-thread-container .pinned {
     background-color: #b71c1c14 !important; }
@@ -959,6 +976,9 @@ h1 {
     float: right; }
   .reply-submit input:hover {
     cursor: pointer; }
+
+.forum-page-numbers {
+  margin: 60px 0; }
 
 .my-account-container {
   padding-top: 1%;

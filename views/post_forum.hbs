@@ -2,39 +2,40 @@
 
 
 <section class="blog-container">
+    {{#if errors}}
+        {{#each errors}}
+            <div class="alert alert-danger">
+                {{this.msg}}
+            </div>
+        {{/each}}
+    {{/if}}
     <div class="blog-row">
         <main class="forum-col-main">
             <div class="forum-post-container">
                 <form action="/forums/post_forum" enctype="multipart/form-data" method="POST">
-                <select name="topic_type" id="forum-topic-select" class="topic-type-select">
-                    <option value="wwe">WWE</option>
-                    <option value="aew">AEW</option>
-                    <option value="njpw">NJPW</option>
-                    <option value="general">General</option>
-                    <option value="off_topic">Off Topic</option>
+                    <select name="topic_type" id="forum-topic-select" class="topic-type-select">
+                        <option value="wwe">WWE</option>
+                        <option value="aew">AEW</option>
+                        <option value="njpw">NJPW</option>
+                        <option value="general">General</option>
+                        <option value="off_topic">Off Topic</option>
                     </select>
                     <div class="blog-title-wrapper">
-                    <input type="text" class="forum-subject-text-input" name="subject">
-                    <textarea class="forum-textarea" name="content"></textarea>
+                        <input type="text" class="forum-subject-text-input" name="subject">
+                        <textarea class="forum-textarea" name="content"></textarea>
                     </div>
                     <div class="forum-submit">
-                    <input type="submit" value="Submit">
+                        <input type="submit" value="Submit">
                     </div>
                 </form>
-                </div>
+            </div>
         </main>
         <aside class="blog-col-aside">
             <div class="blog-sidebar">
                 <div class="sidebar-promo">
-                    <a class="promo-link">
+                    <a class="promo-link" href="https://www.facebook.com/PowerbombPROD/">
                         <img class="promo-image" src="/images/promo-logo-black.jpg">
-                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
-                    </a>
-                </div>
-                <div class="sidebar-promo">
-                    <a class="promo-link">
-                        <img class="promo-image" src="/images/promo-logo-black.jpg">
-                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
+                        <span class="promo-text">Check out Powerbomb Productions on Facebook</span>
                     </a>
                 </div>
             </div>

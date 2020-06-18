@@ -130,3 +130,25 @@
     font-weight: 700;
     color: #222;
 }
+
+ul.pagination {
+    justify-content: center;
+}
+
+li.page-item {
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+li.page-item:not(:first-child) {
+    margin-left: 5px;
+}
+
+button.page-link {
+    margin-left: 0;
+}
+
+button.page-link.active {
+    background-color: $button-color !important;
+    color: white !important;
+}

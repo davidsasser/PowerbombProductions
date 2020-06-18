@@ -1,113 +1,122 @@
 {{> header }}
 <div class="page-title">
-    <h1>{{topic_title}}</h1>
+	<h1>{{topic_title}}</h1>
 </div>
 <section class="blog-container">
-    <div class="blog-row">
-        <main class="blog-col-main">
-            <div class="add-post-container">
-                <input id="forum-text-input" class="add-post-input" placeholder="Create Post" type="text">
-                <input value="{{topic_type}}" type="hidden" name="forum-input-val">
-            </div>
-            <hr>
-                <div class="forum-thread-container">
-                {{#if pinned}}
-                    {{#each pinned}}
-                    <div>
-                        <div class="forum-thread-post pinned" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
-                            <div class="forum-meta">
-                                <div class="meta-container">
-                                    <div class="num-of-replies">{{this.replies}}</div>
-                                    <div class="replies-text">Replies</div>
-                                </div>
-                            </div>
-                            <div class="thread-post-info">
-                                <div class="posted-by-container">
-                                    <div class="posted-by">
-                                        <div class="forum-byline">
-                                            <span class="byline-text">Posted by <span style="color:grey">{{this.user}}</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="forum-title-container">
-                                    <div class="forum-title">
-                                        <h3>{{this.title}}</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <i class="fas fa-thumbtack pinned-icon fa-rotate-45"></i>
-                            {{#if ../isAdmin}}
-                                <a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_horiz</i></a>
-                                <div class="dropdown-menu dropdown-primary">
-                                    <form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
-                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
-                                    </form>
-                                    <form method="post" action="/forums/unpin_topic/{{this.topic_type}}/{{this.topic_id}}">
-                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Unpin Topic</a>
-                                    </form>
-                                </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    {{/each}}
-                {{/if}}
-                {{#if topics}}
-                    {{#each topics}}
-                    <div>
-                        <div class="forum-thread-post" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
-                            <div class="forum-meta">
-                                <div class="meta-container">
-                                    <div class="num-of-replies">{{this.replies}}</div>
-                                    <div class="replies-text">Replies</div>
-                                </div>
-                            </div>
-                            <div class="thread-post-info">
-                                <div class="posted-by-container">
-                                    <div class="posted-by">
-                                        <div class="forum-byline">
-                                            <span class="byline-text">Posted by <span style="color:grey">{{this.user}}</span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="forum-title-container">
-                                    <div class="forum-title">
-                                        <h3>{{this.title}}</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            {{#if ../isAdmin}}
-                                <a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">more_horiz</i></a>
-                                <div class="dropdown-menu dropdown-primary">
-                                    <form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
-                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
-                                    </form>
-                                    <form method="post" action="/forums/pin_topic/{{this.topic_type}}/{{this.topic_id}}">
-                                        <a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Pin Topic</a>
-                                    </form>
-                                </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                    {{/each}}
-                {{/if}}
-                </div>
-        </main>
-        <aside class="blog-col-aside">
-            <div class="blog-sidebar">
-                <div class="sidebar-promo">
-                    <a class="promo-link">
-                        <img class="promo-image" src="/images/promo-logo-black.jpg">
-                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
-                    </a>
-                </div>
-                <div class="sidebar-promo">
-                    <a class="promo-link">
-                        <img class="promo-image" src="/images/promo-logo-black.jpg">
-                        <span class="promo-text">Check out Powerbomb Productions on Instagram</span>
-                    </a>
-                </div>
-            </div>
-        </aside>
-    </div>
+	<div class="blog-row">
+		<main class="blog-col-main">
+			<div class="add-post-container">
+				<input id="forum-text-input" class="add-post-input" placeholder="Create Post" type="text">
+				<input value="{{topic_type}}" type="hidden" name="forum-input-val">
+			</div>
+			<hr>
+			{{#if sects}}
+				{{#each sects}}
+					<div class="forum-thread-container" id="{{this.section}}" data-shown="false" style="display:none">
+						{{#if this.pinned}}
+							{{#each this.pinned}}
+								<div>
+									<div class="forum-thread-post pinned" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
+										<div class="forum-meta">
+											<div class="meta-container">
+												<div class="num-of-replies">{{this.replies}}</div>
+												<div class="replies-text">Replies</div>
+											</div>
+										</div>
+										<div class="thread-post-info">
+											<div class="posted-by-container">
+												<div class="posted-by">
+													<div class="forum-byline">
+														<span class="byline-text">Posted by <span style="color:grey">{{this.user}}</span></span>
+													</div>
+												</div>
+											</div>
+											<div class="forum-title-container">
+												<div class="forum-title">
+													<h3>{{this.title}}</h3>
+												</div>
+											</div>
+										</div>
+										<i class="fas fa-thumbtack pinned-icon fa-rotate-45"></i>
+										{{#if ../../isAdmin}}
+											<a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+													class="material-icons">more_horiz</i></a>
+											<div class="dropdown-menu dropdown-primary">
+												<form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
+													<a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i
+															class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
+												</form>
+												<form method="post" action="/forums/unpin_topic/{{this.topic_type}}/{{this.topic_id}}">
+													<a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i
+															class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Unpin
+														Topic</a>
+												</form>
+											</div>
+										{{/if}}
+									</div>
+								</div>
+							{{/each}}
+						{{/if}}
+						{{#if this.topics}}
+							{{#each this.topics}}
+								<div>
+									<div class="forum-thread-post" data-id="{{this.topic_id}}" data-type="{{this.topic_type}}">
+										<div class="forum-meta">
+											<div class="meta-container">
+												<div class="num-of-replies">{{this.replies}}</div>
+												<div class="replies-text">Replies</div>
+											</div>
+										</div>
+										<div class="thread-post-info">
+											<div class="posted-by-container">
+												<div class="posted-by">
+													<div class="forum-byline">
+														<span class="byline-text">Posted by <span style="color:grey">{{this.user}}</span></span>
+													</div>
+												</div>
+											</div>
+											<div class="forum-title-container">
+												<div class="forum-title">
+													<h3>{{this.title}}</h3>
+												</div>
+											</div>
+										</div>
+										{{#if ../../isAdmin}}
+											<a class="admin-options-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+													class="material-icons">more_horiz</i></a>
+											<div class="dropdown-menu dropdown-primary">
+												<form method="post" action="/forums/remove_topic/{{this.topic_type}}/{{this.topic_id}}">
+													<a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i
+															class="fas fa-ban"></i></i>&nbsp;&nbsp;Delete</a>
+												</form>
+												<form method="post" action="/forums/pin_topic/{{this.topic_type}}/{{this.topic_id}}">
+													<a class="dropdown-item" href="javascript:{}" onclick="this.parentNode.submit();"><i
+															class="fas fa-thumbtack fa-rotate-45"></i>&nbsp;&nbsp;&nbsp;Pin
+														Topic</a>
+												</form>
+											</div>
+										{{/if}}
+									</div>
+								</div>
+							{{/each}}
+						{{/if}}
+					</div>
+				{{/each}}
+			{{/if}}
+			<ul class="forum-page-numbers pagination pagination-lg">
+				{{{pages}}}
+			</ul>
+		</main>
+		<aside class="blog-col-aside">
+			<div class="blog-sidebar">
+				<div class="sidebar-promo">
+					<a class="promo-link" href="https://twitter.com/PowerbombPROD">
+						<img class="promo-image" src="/images/promo-logo-black.jpg">
+						<span class="promo-text">Check out Powerbomb Productions on Twitter</span>
+					</a>
+				</div>
+			</div>
+		</aside>
+	</div>
 </section>
 {{> footer}}

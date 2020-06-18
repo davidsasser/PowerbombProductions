@@ -56,7 +56,6 @@ login.post("/resetpassword", (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    console.log(`errors: ${JSON.stringify(errors)}`);
 
     res.render("resetPassword", {
       errors: errors,
@@ -126,9 +125,7 @@ login.post("/forgotpassword", (req, res) => {
 
         transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
-            console.log(error);
           } else {
-            console.log("Email sent: " + info.response);
             var errs = [
               { msg: "An email has been sent to reset your password." }
             ]
@@ -148,7 +145,7 @@ login.post("/forgotpassword", (req, res) => {
 login.post("/register", function (req, res) {
   const filter = new Filter();
 
-  req.checkBody("username", "Username field cannot be empty").notEmpty();
+  req.checkBody("username", "Username field cannot be empty").trim().notEmpty();
   req.checkBody("username", "Username must be between 3-20 characters long.").len(3, 20);
   req.checkBody("username", "Please choose a different username.").custom(value => {
     return !filter.isProfane(value);
@@ -163,7 +160,6 @@ login.post("/register", function (req, res) {
   db.query;
 
   if (errors) {
-    console.log(`errors: ${JSON.stringify(errors)}`);
 
     res.render("register", {
       errors: errors
@@ -208,7 +204,6 @@ login.post("/register", function (req, res) {
             [username, hash, email, created, login],
             (error, results) => {
               if (error) {
-                console.log("error ocurred", error);
                 res.send({
                   code: 400,
                   failed: "error ocurred"

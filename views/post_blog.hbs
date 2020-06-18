@@ -1,22 +1,29 @@
 {{> header }}
 <div class="blog-post-container">
+  {{#if errors}}
+    {{#each errors}}
+      <div class="alert alert-danger">
+        {{this.msg}}
+      </div>
+    {{/each}}
+  {{/if}}
   <form action="/add_post" enctype="multipart/form-data" method="POST">
     <div class="blog-title-wrapper">
       <input class="blog-title-entry" type="text" name="title" placeholder="Enter Title"><br>
     </div>
     <textarea id="editor" name="content">
     </textarea>
-                <script>
-                  ClassicEditor
-                      .create( document.querySelector( '#editor' ) )
-                      .catch( error => {
-                          console.error( error );
-                      } );
-              </script>
+    <script>
+      ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+          console.error(error);
+        });
+    </script>
     <div class="blog-image-entry">
       <button id="uploadImage" class="btn-upload">Upload an Image</button>
       <label id="fileNameLabel" for="uploadImage"></label>
-      <input id="imageFile" type="file" name="photo" accept="image/*"/>
+      <input id="imageFile" type="file" name="photo" accept="image/*" />
     </div>
     <div class="blog-submit">
       <input type="submit" value="Submit">

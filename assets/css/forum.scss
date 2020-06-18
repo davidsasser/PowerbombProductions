@@ -46,7 +46,7 @@
 }
 
 .forum-thread-container {
-    min-height: 800px;
+    min-height: 400px;
     width: 100%;
 
     .pinned {
@@ -443,4 +443,8 @@
     input:hover {
         cursor: pointer;
     }
+}
+
+.forum-page-numbers {
+    margin: 60px 0;
 }
